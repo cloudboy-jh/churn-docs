@@ -26,22 +26,32 @@ Visit [http://localhost:3000](http://localhost:3000) to view the documentation s
 ### Build for Cloudflare Pages
 
 ```bash
-# Build with next-on-pages adapter
+# Build with OpenNext Cloudflare adapter
 bun run pages:build
 
 # Preview locally
 bun run preview
 ```
 
-The build output will be in `.vercel/output/static/` directory.
+The build output will be in `.worker-next/dist/` directory.
 
 ## Deployment
 
-This site is configured for Cloudflare Pages using `@cloudflare/next-on-pages` adapter, which enables full Next.js features (SSR, API routes, etc.) on Cloudflare's edge network.
+This site is configured for Cloudflare Pages using `@opennextjs/cloudflare` adapter, which enables full Next.js features (SSR, API routes, etc.) on Cloudflare Workers.
 
 ### Deploy to Cloudflare Pages
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete instructions on deploying to Cloudflare Pages.
+**Required Cloudflare Pages Settings:**
+
+1. Push to GitHub
+2. Connect repository to Cloudflare Pages
+3. **Build command**: `npm run build && npx opennextjs-cloudflare build`
+4. **Build output directory**: `.worker-next/dist`
+5. **Environment variables**:
+   - `NODE_VERSION=20`
+6. **Compatibility settings** (in wrangler.toml):
+   - `compatibility_date = "2024-09-23"`
+   - `compatibility_flags = ["nodejs_compat"]`
 
 **Quick deploy via CLI:**
 
@@ -51,17 +61,13 @@ bun run pages:build
 bun run deploy
 ```
 
-**Quick deploy via Dashboard:**
-
-1. Push to GitHub
-2. Connect repository to Cloudflare Pages
-3. Set build command: `npx @cloudflare/next-on-pages@1`
-4. Set output directory: `.vercel/output/static`
-5. Add environment variable: `NODE_VERSION=20`
-6. Enable compatibility flag: `nodejs_compat`
-7. Deploy!
-
 Your site will be live at `https://churn-docs.pages.dev`
+
+### Important Notes
+
+- This project uses **Next.js 16** which requires the new **OpenNext adapter**
+- The old `@cloudflare/next-on-pages` adapter is deprecated and doesn't support Next.js 16
+- Edge runtime is not used - OpenNext uses Node.js runtime for better compatibility
 
 ## Project Structure
 

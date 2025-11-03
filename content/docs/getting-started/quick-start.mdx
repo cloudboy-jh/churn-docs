@@ -1,0 +1,176 @@
+---
+title: Quick Start
+description: Get up and running with Churn in minutes
+---
+
+This guide will walk you through running your first code analysis with Churn.
+
+## Step 1: Navigate to Your Repository
+
+Churn works with any Git repository. Navigate to your project:
+
+```bash
+cd /path/to/your/project
+```
+
+## Step 2: Select an AI Provider
+
+On first run, Churn will ask you to select an AI provider:
+
+```bash
+churn model
+```
+
+You'll see a list of available providers:
+
+- **Anthropic Claude** (Recommended)
+- **OpenAI GPT**
+- **Google Gemini**
+- **Ollama** (Local, free, private)
+
+### Choosing a Model
+
+For daily development, we recommend:
+- **Claude Haiku**: Fast and cost-effective
+- **Ollama (deepseek-r1)**: Free, local, private
+
+For important releases:
+- **Claude Sonnet**: Balanced quality and cost
+- **Claude Opus**: Maximum quality
+
+## Step 3: Configure API Keys
+
+If using a cloud provider (Anthropic, OpenAI, Google), you'll need an API key:
+
+### Anthropic Claude
+
+1. Visit [console.anthropic.com](https://console.anthropic.com)
+2. Create an API key
+3. Paste it when prompted
+
+### OpenAI GPT
+
+1. Visit [platform.openai.com](https://platform.openai.com)
+2. Create an API key
+3. Paste it when prompted
+
+### Google Gemini
+
+1. Visit [aistudio.google.com](https://aistudio.google.com)
+2. Create an API key
+3. Paste it when prompted
+
+### Ollama (Local)
+
+No API key needed! Just [install Ollama](/docs/ollama) and pull a model:
+
+```bash
+ollama pull deepseek-r1
+```
+
+## Step 4: Run Your First Analysis
+
+Start with a staged analysis (analyzes only files you've added to Git staging):
+
+```bash
+# Stage some files
+git add src/components/Button.tsx
+
+# Run analysis
+churn run --staged
+```
+
+Or run a full repository analysis:
+
+```bash
+churn run
+```
+
+### What You'll See
+
+Churn will:
+1. Detect your repository
+2. Show a confirmation screen with file count and estimated cost
+3. Stream real-time analysis progress
+4. Display a summary of findings
+
+## Step 5: Review the Results
+
+After analysis completes, review suggestions interactively:
+
+```bash
+churn review
+```
+
+### Navigation
+
+- **↑/↓**: Navigate between suggestions
+- **Enter**: View details
+- **A**: Accept suggestion
+- **R**: Reject suggestion
+- **Q**: Quit
+
+### Understanding Suggestions
+
+Each suggestion includes:
+- **Category**: refactor, bug, optimization, style, documentation
+- **Severity**: low, medium, high
+- **Description**: What the issue is
+- **Recommendation**: How to fix it
+- **Code Diff**: Before and after (when applicable)
+
+## Step 6: Export Results
+
+Export your analysis in multiple formats:
+
+```bash
+churn export
+```
+
+This creates:
+- `.churn/patches/suggestions-*.json` - Full JSON report
+- `.churn/patches/report-*.md` - Human-readable Markdown
+- `.churn/patches/changes-*.patch` - Git patch file
+
+## Common Workflows
+
+### Daily Development
+
+```bash
+# Work on your code
+git add src/features/auth.ts
+
+# Quick check with cheap model
+churn model  # Select Haiku
+churn run --staged
+
+# Review and apply
+churn review
+```
+
+### Pre-Release Quality Check
+
+```bash
+# Switch to better model
+churn model  # Select Sonnet
+
+# Full repository scan
+churn run
+
+# Export report for team
+churn export
+```
+
+### Specific Files Analysis
+
+```bash
+# Analyze specific patterns
+churn run --files "src/components/**/*.tsx"
+```
+
+## Next Steps
+
+- Learn about [basic concepts](/docs/getting-started/basic-concepts)
+- Explore [CLI commands](/docs/cli-reference)
+- Set up [Ollama for free local analysis](/docs/ollama)
+- Optimize [performance and costs](/docs/performance)

@@ -1,0 +1,152 @@
+---
+title: Suggestion Categories
+description: How Churn categorizes code findings
+---
+
+Churn categorizes findings into five types to help you prioritize improvements.
+
+<Mermaid>
+{`pie title Typical Category Distribution
+    "Refactor" : 45
+    "Style" : 25
+    "Documentation" : 18
+    "Bug" : 8
+    "Optimization" : 4
+`}
+</Mermaid>
+
+## Refactor
+
+Code structure improvements, design pattern suggestions, and maintainability enhancements.
+
+### Examples
+
+- Extract complex functions
+- Apply DRY principles
+- Improve naming conventions
+- Simplify conditional logic
+
+### Typical Fixes
+
+```typescript
+// Before: Complex nested conditionals
+if (user) {
+  if (user.isActive) {
+    if (user.role === 'admin') {
+      return true;
+    }
+  }
+}
+
+// After: Simplified with early returns
+if (!user?.isActive) return false;
+return user.role === 'admin';
+```
+
+## Bug
+
+Potential bugs, logic errors, and correctness issues.
+
+### Examples
+
+- Off-by-one errors
+- Null pointer risks
+- Race conditions
+- Type mismatches
+
+### Typical Fixes
+
+```typescript
+// Before: Potential null pointer
+const username = user.profile.name;
+
+// After: Safe access
+const username = user?.profile?.name ?? 'Anonymous';
+```
+
+## Optimization
+
+Performance improvements and efficiency gains.
+
+### Examples
+
+- Algorithm improvements
+- Caching opportunities
+- Unnecessary computations
+- Memory optimizations
+
+### Typical Fixes
+
+```typescript
+// Before: Inefficient lookup
+const activeUsers = users.filter(u => u.isActive);
+const count = activeUsers.length;
+
+// After: Single pass
+const count = users.reduce((acc, u) => acc + (u.isActive ? 1 : 0), 0);
+```
+
+## Style
+
+Code style and formatting improvements.
+
+### Examples
+
+- Consistent formatting
+- Naming conventions
+- Import organization
+- Comment quality
+
+### Typical Fixes
+
+```typescript
+// Before: Inconsistent naming
+const user_name = getUserName();
+const UserAge = getAge();
+
+// After: Consistent camelCase
+const userName = getUserName();
+const userAge = getAge();
+```
+
+## Documentation
+
+Missing or inadequate documentation.
+
+### Examples
+
+- Missing function docs
+- Unclear comments
+- Outdated documentation
+- Missing README sections
+
+### Typical Fixes
+
+```typescript
+// Before: No documentation
+function processData(data: any[]) {
+  return data.map(d => d.value * 2);
+}
+
+// After: Documented
+/**
+ * Doubles the value of each data item
+ * @param data - Array of objects with numeric value property
+ * @returns Array of doubled values
+ */
+function processData(data: Array<{ value: number }>): number[] {
+  return data.map(d => d.value * 2);
+}
+```
+
+## Category Distribution
+
+Understanding the typical distribution of categories can help set expectations:
+
+| Category | Typical % | Priority |
+|----------|-----------|----------|
+| Refactor | 40-50% | Medium |
+| Style | 20-30% | Low |
+| Documentation | 15-20% | Low-Medium |
+| Bug | 10-15% | High |
+| Optimization | 5-10% | Medium |

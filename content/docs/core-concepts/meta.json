@@ -1,0 +1,12 @@
+{
+  "title": "Core Concepts",
+  "pages": [
+    "index",
+    "repository-detection",
+    "analysis-modes",
+    "suggestion-categories",
+    "severity-levels",
+    "reports-and-exports",
+    "churn-workflow"
+  ]
+}

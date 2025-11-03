@@ -1,0 +1,137 @@
+---
+title: Severity Levels
+description: Understanding issue severity in Churn
+---
+
+Each suggestion is assigned a severity level to help you prioritize which issues to address first.
+
+## High Severity
+
+Critical issues requiring immediate attention.
+
+### Examples
+
+- Security vulnerabilities
+- Data loss risks
+- Breaking bugs
+- Critical performance issues
+
+### Typical Issues
+
+```typescript
+// High Severity: Security vulnerability
+const query = `SELECT * FROM users WHERE id = ${userId}`;
+// Risk: SQL injection
+
+// Fix: Use parameterized queries
+const query = 'SELECT * FROM users WHERE id = ?';
+db.query(query, [userId]);
+```
+
+### When to Address
+
+- Immediately, before any release
+- Blocking for production deployment
+- Should halt current work to fix
+
+## Medium Severity
+
+Important issues that should be addressed soon.
+
+### Examples
+
+- Moderate bugs
+- Refactoring opportunities
+- Performance improvements
+- Missing error handling
+
+### Typical Issues
+
+```typescript
+// Medium Severity: Missing error handling
+async function fetchUser(id: string) {
+  const response = await fetch(`/api/users/${id}`);
+  return response.json();
+}
+
+// Fix: Add error handling
+async function fetchUser(id: string) {
+  try {
+    const response = await fetch(`/api/users/${id}`);
+    if (!response.ok) throw new Error('Failed to fetch user');
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    throw error;
+  }
+}
+```
+
+### When to Address
+
+- Within current sprint or iteration
+- Before next release
+- Schedule dedicated time to fix
+
+## Low Severity
+
+Minor improvements and nice-to-haves.
+
+### Examples
+
+- Style inconsistencies
+- Documentation gaps
+- Minor optimizations
+- Code clarity improvements
+
+### Typical Issues
+
+```typescript
+// Low Severity: Unclear variable name
+const d = new Date();
+
+// Fix: More descriptive name
+const currentDate = new Date();
+```
+
+### When to Address
+
+- During refactoring sessions
+- When working in nearby code
+- Backlog for future improvements
+
+## Severity Distribution
+
+Typical distribution in a codebase:
+
+| Severity | Expected % | Action Required |
+|----------|-----------|-----------------|
+| High | 5-10% | Fix immediately |
+| Medium | 30-40% | Schedule soon |
+| Low | 50-65% | Opportunistic fixes |
+
+## Filtering by Severity
+
+You can filter suggestions during review:
+
+```bash
+# Review only high severity issues
+churn review --severity high
+
+# Review high and medium
+churn review --severity high,medium
+```
+
+## Custom Severity Thresholds
+
+Configure what constitutes each severity level in your `.churn/config.json`:
+
+```json
+{
+  "severity": {
+    "high": ["security", "data-loss", "critical-bug"],
+    "medium": ["bug", "performance", "refactor"],
+    "low": ["style", "documentation"]
+  }
+}
+```

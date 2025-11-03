@@ -1,0 +1,4 @@
+{
+  "title": "Documentation",
+  "pages": ["index", "getting-started", "core-concepts", "core-features", "cli-reference", "configuration", "ollama", "performance", "architecture", "workflows", "development", "troubleshooting", "api-reference", "integration-guides", "faq"]
+}

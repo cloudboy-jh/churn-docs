@@ -1,0 +1,146 @@
+---
+title: Churn Workflow
+description: Understanding the complete Churn analysis workflow
+---
+
+This diagram shows the complete workflow when using Churn for code analysis.
+
+<Mermaid>
+{`flowchart TD
+    Start([Start: churn run]) --> Init[Initialize Churn]
+    Init --> Detect[Detect Git Repository]
+    Detect --> LoadConfig[Load Configuration]
+    LoadConfig --> SelectMode{Analysis Mode}
+    
+    SelectMode -->|Full| GetAll[Get All Files]
+    SelectMode -->|Staged| GetStaged[Get Staged Files]
+    SelectMode -->|Pattern| GetPattern[Get Matching Files]
+    
+    GetAll --> Filter[Apply Filters & Ignore Rules]
+    GetStaged --> Filter
+    GetPattern --> Filter
+    
+    Filter --> Cache{Check Cache}
+    Cache -->|Cache Hit| UseCached[Use Cached Results]
+    Cache -->|Cache Miss| Analyze[Send to AI Model]
+    
+    Analyze --> Process[Process Response]
+    UseCached --> Merge[Merge Results]
+    Process --> Merge
+    
+    Merge --> Categorize[Categorize Suggestions]
+    Categorize --> Prioritize[Assign Severity]
+    Prioritize --> Store[Store Results]
+    
+    Store --> Review([churn review])
+    Review --> Navigate[Navigate Suggestions]
+    Navigate --> Decision{Accept?}
+    
+    Decision -->|Yes| Apply[Apply Changes]
+    Decision -->|No| Skip[Skip Suggestion]
+    Decision -->|Quit| Export
+    
+    Apply --> Next{More Suggestions?}
+    Skip --> Next
+    
+    Next -->|Yes| Navigate
+    Next -->|No| Export([churn export])
+    
+    Export --> GenJSON[Generate JSON Report]
+    Export --> GenMD[Generate Markdown Report]
+    Export --> GenPatch[Generate Git Patch]
+    
+    GenJSON --> End([Complete])
+    GenMD --> End
+    GenPatch --> End
+    
+    style Start fill:#ff5656,color:#fff
+    style Review fill:#ff5656,color:#fff
+    style Export fill:#ff5656,color:#fff
+    style End fill:#ff5656,color:#fff
+    style Cache fill:#ffd700,color:#000
+    style Decision fill:#ffd700,color:#000
+`}
+</Mermaid>
+
+## Workflow Phases
+
+### 1. Initialization
+
+Churn starts by:
+- Detecting your Git repository
+- Loading global and project-specific configuration
+- Determining which files to analyze based on mode
+
+### 2. File Collection
+
+Depending on the mode:
+- **Full**: Collects all repository files
+- **Staged**: Collects only files in Git staging area  
+- **Pattern**: Collects files matching the specified pattern
+
+All files are then filtered against ignore rules.
+
+### 3. Caching Layer
+
+Before sending files to the AI model:
+- Each file is hashed (SHA-256)
+- Hash is checked against the cache
+- Cache hits reuse previous results (70% cost savings)
+- Cache misses proceed to analysis
+
+### 4. AI Analysis
+
+Files without cached results are:
+- Batched for efficient processing
+- Sent to your selected AI model
+- Processed with context about your codebase
+- Returned with categorized suggestions
+
+### 5. Results Processing
+
+Raw AI responses are:
+- Parsed and validated
+- Categorized by type (refactor, bug, optimization, etc.)
+- Assigned severity levels (high, medium, low)
+- Stored in local database
+
+### 6. Interactive Review
+
+The `churn review` command lets you:
+- Navigate through suggestions
+- View detailed explanations and code diffs
+- Accept or reject each suggestion
+- Apply changes interactively
+
+### 7. Export & Reporting
+
+Finally, `churn export` generates:
+- **JSON**: For programmatic access and CI/CD
+- **Markdown**: For human-readable reports
+- **Git Patch**: For applying changes with Git
+
+## Command Sequence
+
+Typical usage pattern:
+
+```bash
+# 1. Select AI model (one-time setup)
+churn model
+
+# 2. Run analysis
+churn run --staged
+
+# 3. Review suggestions interactively
+churn review
+
+# 4. Export results
+churn export
+```
+
+## Optimization Tips
+
+- Use `--staged` for daily development (80-90% cost savings)
+- Run full analysis before releases
+- Cache persists for 30 days automatically
+- Batch multiple files for better performance

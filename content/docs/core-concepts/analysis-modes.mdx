@@ -1,0 +1,107 @@
+---
+title: Analysis Modes
+description: Different ways to analyze your code with Churn
+---
+
+Churn supports three analysis modes, each optimized for different use cases.
+
+<Mermaid>
+{`flowchart TD
+    A[churn run] --> B{Which Mode?}
+    B -->|No flags| C[Full Analysis]
+    B -->|--staged| D[Staged Analysis]
+    B -->|--files pattern| E[File-Specific Analysis]
+    
+    C --> F[Analyze All Files]
+    D --> G[Analyze Staged Files Only]
+    E --> H[Analyze Matching Files]
+    
+    F --> I[100% of codebase]
+    G --> J[10-20% of codebase]
+    H --> K[20-40% of codebase]
+    
+    I --> L[Highest API Cost]
+    J --> M[Lowest API Cost]
+    K --> N[Medium API Cost]
+    
+    style C fill:#ff5656,color:#fff
+    style D fill:#ff5656,color:#fff
+    style E fill:#ff5656,color:#fff
+`}
+</Mermaid>
+
+## Full Analysis
+
+Analyzes all files in your repository (excluding ignored patterns).
+
+```bash
+churn run
+```
+
+### When to use
+
+- First-time analysis
+- Pre-release quality checks
+- Comprehensive code reviews
+- Major refactoring projects
+
+### Cost implications
+
+Analyzes entire codebase, highest API usage
+
+## Staged Analysis
+
+Analyzes only files in your Git staging area.
+
+```bash
+churn run --staged
+```
+
+### When to use
+
+- Daily development workflow
+- Before commits
+- Quick quality checks
+- Cost-conscious analysis
+
+### Benefits
+
+80-90% cost savings compared to full analysis
+
+## File-Specific Analysis
+
+Analyzes specific files or patterns.
+
+```bash
+churn run --files "src/components/**/*.tsx"
+```
+
+### When to use
+
+- Targeting specific modules
+- Reviewing changed files
+- Analyzing new features
+- Debugging specific areas
+
+### Examples
+
+```bash
+# Analyze all TypeScript files
+churn run --files "**/*.ts"
+
+# Analyze specific directory
+churn run --files "src/auth/**/*"
+
+# Multiple patterns
+churn run --files "src/components/**/*.tsx" --files "src/hooks/**/*.ts"
+```
+
+## Choosing the Right Mode
+
+| Use Case | Recommended Mode | Cost Impact |
+|----------|-----------------|-------------|
+| Daily development | Staged | 10-20% of full |
+| Pre-commit checks | Staged | 10-20% of full |
+| Feature review | File-specific | 20-40% of full |
+| Release prep | Full | 100% |
+| Initial analysis | Full | 100% |

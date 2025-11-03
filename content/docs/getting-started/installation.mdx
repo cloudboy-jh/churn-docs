@@ -1,0 +1,171 @@
+---
+title: Installation
+description: How to install Churn on your system
+---
+
+## Prerequisites
+
+Before installing Churn, ensure you have:
+
+- **Git**: For repository detection and analysis
+- **Node.js or Bun**: Runtime for the CLI tool
+  - Node.js 18+ or Bun 1.x recommended
+
+## Installation Methods
+
+### npm (Recommended)
+
+```bash
+npm install -g churn-cli
+```
+
+### Bun
+
+```bash
+bun install -g churn-cli
+```
+
+### pnpm
+
+```bash
+pnpm add -g churn-cli
+```
+
+### Yarn
+
+```bash
+yarn global add churn-cli
+```
+
+### From Source (Development)
+
+For contributors or those who want the latest development version:
+
+```bash
+# Clone the repository
+git clone https://github.com/cloudboyjh1/churn2.0.git
+cd churn2.0
+
+# Install dependencies
+bun install
+
+# Build and link globally
+bun run build
+bun link
+```
+
+## Verifying Installation
+
+After installation, verify Churn is working:
+
+```bash
+churn --version
+```
+
+You should see output similar to:
+
+```
+churn v2.0.5
+```
+
+## Updating Churn
+
+To update to the latest version:
+
+### npm
+
+```bash
+npm update -g churn-cli
+```
+
+### Bun
+
+```bash
+bun update -g churn-cli
+```
+
+### pnpm
+
+```bash
+pnpm update -g churn-cli
+```
+
+### Yarn
+
+```bash
+yarn global upgrade churn-cli
+```
+
+## Uninstalling
+
+If you need to remove Churn:
+
+### npm
+
+```bash
+npm uninstall -g churn-cli
+```
+
+### Bun
+
+```bash
+bun remove -g churn-cli
+```
+
+### pnpm
+
+```bash
+pnpm remove -g churn-cli
+```
+
+### Yarn
+
+```bash
+yarn global remove churn-cli
+```
+
+## Troubleshooting Installation
+
+### Permission Errors
+
+If you encounter permission errors during global installation:
+
+**npm (using npx)**:
+```bash
+npx churn-cli
+```
+
+**Or fix permissions**:
+```bash
+sudo npm install -g churn-cli
+```
+
+### PATH Issues
+
+If the `churn` command is not found after installation, ensure your global package directory is in your PATH:
+
+**For npm**:
+```bash
+echo 'export PATH="$PATH:$(npm config get prefix)/bin"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+**For Bun**:
+```bash
+echo 'export PATH="$PATH:$HOME/.bun/bin"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+### Version Conflicts
+
+If you have multiple versions installed, uninstall all versions and reinstall:
+
+```bash
+npm uninstall -g churn-cli
+bun remove -g churn-cli
+# Then reinstall with your preferred package manager
+```
+
+## Next Steps
+
+Now that Churn is installed, proceed to the [Quick Start Tutorial](/docs/getting-started/quick-start) to run your first analysis.

@@ -1,0 +1,164 @@
+---
+title: Reports and Exports
+description: Understanding Churn's output formats
+---
+
+Churn generates comprehensive reports in multiple formats to suit different workflows.
+
+## Export Formats
+
+### JSON Report
+
+Machine-readable format for programmatic access.
+
+**Location**: `.churn/reports/churn-reports.json`
+
+**Structure**:
+```json
+{
+  "metadata": {
+    "timestamp": "2025-01-15T10:30:00Z",
+    "repository": "/path/to/project",
+    "filesAnalyzed": 145,
+    "model": "claude-sonnet-4"
+  },
+  "suggestions": [
+    {
+      "id": "sg_001",
+      "category": "refactor",
+      "severity": "medium",
+      "file": "src/utils/helpers.ts",
+      "line": 42,
+      "description": "Extract complex function",
+      "recommendation": "Break down into smaller functions"
+    }
+  ]
+}
+```
+
+**Use cases**:
+- CI/CD integration
+- Custom tooling
+- Data analysis
+- Automated processing
+
+### Markdown Report
+
+Human-readable format for sharing and documentation.
+
+**Location**: `.churn/patches/report-*.md`
+
+**Example**:
+```markdown
+# Churn Analysis Report
+
+**Date**: January 15, 2025
+**Repository**: my-project
+**Files Analyzed**: 145
+
+## Summary
+
+- **High Severity**: 8 issues
+- **Medium Severity**: 34 issues
+- **Low Severity**: 67 issues
+
+## Findings
+
+### src/utils/helpers.ts
+
+#### Refactor - Medium Severity
+Line 42: Extract complex function
+...
+```
+
+**Use cases**:
+- Team reviews
+- Documentation
+- Release notes
+- Pull request comments
+
+### Git Patch
+
+Applicable changes in standard Git patch format.
+
+**Location**: `.churn/patches/changes-*.patch`
+
+**Example**:
+```diff
+diff --git a/src/utils/helpers.ts b/src/utils/helpers.ts
+index abc123..def456 100644
+--- a/src/utils/helpers.ts
++++ b/src/utils/helpers.ts
+@@ -40,6 +40,12 @@
+-  // Complex logic here
++  function validateInput(input: string) {
++    return input.length > 0;
++  }
+```
+
+**Use cases**:
+- Applying suggestions with Git
+- Version control integration
+- Code review workflows
+
+## Exporting Reports
+
+Export all formats at once:
+
+```bash
+churn export
+```
+
+Export specific format:
+
+```bash
+churn export --format json
+churn export --format markdown
+churn export --format patch
+```
+
+Export with custom output path:
+
+```bash
+churn export --output ./reports/analysis.json
+```
+
+## Report Customization
+
+Configure report settings in `.churn/config.json`:
+
+```json
+{
+  "reports": {
+    "includeLowSeverity": false,
+    "includeCodeDiffs": true,
+    "maxSuggestionsPerFile": 10,
+    "sortBy": "severity"
+  }
+}
+```
+
+## Historical Reports
+
+Churn keeps historical reports for tracking progress:
+
+```
+.churn/reports/
+├── churn-reports.json           # Latest
+├── churn-reports-2025-01-15.json
+├── churn-reports-2025-01-10.json
+└── archive/
+    └── older-reports...
+```
+
+View report history:
+
+```bash
+churn reports --list
+```
+
+Compare reports:
+
+```bash
+churn reports --compare 2025-01-10 2025-01-15
+```

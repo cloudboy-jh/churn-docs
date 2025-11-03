@@ -1,0 +1,84 @@
+---
+title: Introduction
+description: What is Churn and why should you use it?
+---
+
+## What is Churn?
+
+Churn is a local-first CLI tool that brings AI-powered code analysis directly to your terminal. It helps you identify bugs, refactor code, optimize performance, and improve code quality without sending your code to the cloud.
+
+## Why Churn?
+
+### Philosophy and Benefits
+
+- **Local-First Architecture**: Your code never leaves your machine when using Ollama
+- **Privacy-Focused**: No telemetry, no cloud backend, no account required
+- **Zero Setup**: Works immediately in any Git repository
+- **Cost-Effective**: Smart caching and staged mode save up to 90% on API costs
+- **Fast**: Parallel processing provides 10x speedup
+- **Deterministic**: Same input produces same output
+
+### Key Features Overview
+
+1. **Multi-Provider AI Support**
+   - Anthropic Claude (Sonnet, Opus, Haiku)
+   - OpenAI GPT (GPT-5, GPT-5 Mini, Nano, Pro)
+   - Google Gemini (2.5 Pro, Flash, Flash-Lite)
+   - Ollama (local models for complete privacy)
+
+2. **Flexible Analysis Modes**
+   - Full repository analysis
+   - Staged files only (80-90% cost savings)
+   - Specific file patterns
+
+3. **Interactive Review**
+   - Navigate suggestions with keyboard shortcuts
+   - Accept or reject changes
+   - View detailed code diffs
+   - Filter by category and severity
+
+4. **Smart Caching**
+   - Content-based hashing (SHA-256)
+   - 70% cost savings on reruns
+   - 30-day cache duration
+
+5. **Multiple Export Formats**
+   - JSON for programmatic access
+   - Markdown reports for sharing
+   - Git patch files for applying changes
+
+## Who Should Use Churn?
+
+Churn is ideal for:
+
+- **Individual Developers**: Daily code quality checks before commits
+- **Development Teams**: Standardized code review workflows
+- **Open Source Maintainers**: Automated quality checks on contributions
+- **Security Teams**: Vulnerability and bug detection
+- **Tech Debt Managers**: Identifying refactoring opportunities
+
+## Quick Demo
+
+```bash
+# Install Churn globally
+bun install -g churn-cli
+
+# Navigate to your Git repository
+cd your-project
+
+# Select your AI provider
+churn model
+
+# Run analysis on staged files
+churn run --staged
+
+# Review suggestions interactively
+churn review
+
+# Export results
+churn export
+```
+
+## Next Steps
+
+Ready to get started? Follow our [installation guide](/docs/getting-started/installation) to install Churn, or jump to the [quick start tutorial](/docs/getting-started/quick-start) to run your first analysis.

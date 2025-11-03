@@ -1,0 +1,31 @@
+---
+title: Repository Detection
+description: How Churn detects and works with Git repositories
+---
+
+Churn automatically detects Git repositories when you run it. It uses repository information to:
+
+- Determine which files to analyze
+- Identify staged files for `--staged` mode
+- Generate context-aware suggestions
+- Create relative file paths in reports
+
+## Requirements
+
+- Must be run inside a Git repository
+- Repository must be initialized (`git init`)
+
+## How It Works
+
+When you run Churn, it traverses up the directory tree looking for a `.git` folder. Once found, it uses the repository root as the base for all file operations.
+
+## Ignored Files
+
+Churn respects your `.gitignore` file and automatically excludes:
+
+- Files listed in `.gitignore`
+- Common patterns like `node_modules/`, `dist/`, `.next/`
+- Binary files and media assets
+- Large files (configurable threshold)
+
+You can customize ignored patterns in your Churn configuration.

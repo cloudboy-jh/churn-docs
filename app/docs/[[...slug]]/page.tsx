@@ -9,8 +9,6 @@ import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import { Mermaid } from "@/components/mdx/mermaid";
 
-export const runtime = "edge";
-
 export default async function Page({
   params,
 }: {

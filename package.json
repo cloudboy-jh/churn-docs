@@ -5,14 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "pages:build": "next-on-pages",
-    "preview": "wrangler pages dev",
-    "deploy": "wrangler pages deploy",
+    "pages:build": "npx opennextjs-cloudflare build",
+    "preview": "npx opennextjs-cloudflare dev",
+    "deploy": "npx opennextjs-cloudflare deploy",
     "build": "next build",
     "start": "next start"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.16",
+    "@opennextjs/cloudflare": "^1.1.3",
     "@tailwindcss/postcss": "^4.1.16",
     "@types/bun": "latest",
     "@types/react": "^19.2.2",

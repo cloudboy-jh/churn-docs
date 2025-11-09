@@ -14,8 +14,10 @@ Churn is a local-first CLI tool that brings AI-powered code analysis directly to
 - **Local-First Architecture**: Your code never leaves your machine when using Ollama
 - **Privacy-Focused**: No telemetry, no cloud backend, no account required
 - **Zero Setup**: Works immediately in any Git repository
-- **Cost-Effective**: Smart caching and staged mode save up to 90% on API costs
-- **Fast**: Parallel processing provides 10x speedup
+- **Intelligent & Context-Aware**: Adaptive prompts based on language, framework, and project structure
+- **Cost-Effective**: Differential analysis + smart caching save up to 90% on API costs
+- **Fast**: Parallel processing + optimized diff analysis provides 10x speedup
+- **Accurate**: Framework detection delivers more relevant, targeted suggestions
 - **Deterministic**: Same input produces same output
 
 ### Key Features Overview
@@ -26,23 +28,33 @@ Churn is a local-first CLI tool that brings AI-powered code analysis directly to
    - Google Gemini (2.5 Pro, Flash, Flash-Lite)
    - Ollama (local models for complete privacy)
 
-2. **Flexible Analysis Modes**
-   - Full repository analysis
-   - Staged files only (80-90% cost savings)
-   - Specific file patterns
+2. **Intelligent Analysis** ✨ New in v2.1
+   - **Adaptive Prompts**: Language-specific templates (TypeScript, Python, Rust, Go)
+   - **Context Awareness**: Automatic framework detection (React, Next.js, Django, FastAPI)
+   - **Differential Analysis**: 70-90% token reduction by analyzing only changes
+   - **Smart Mode Selection**: Automatic optimization based on file changes
 
-3. **Interactive Review**
+3. **Flexible Analysis Modes**
+   - Full repository analysis
+   - Staged files only with differential analysis (80-90% cost savings)
+   - Specific file patterns
+   - Smart fallback for optimal performance
+
+4. **Interactive Review**
    - Navigate suggestions with keyboard shortcuts
    - Accept or reject changes
    - View detailed code diffs
    - Filter by category and severity
+   - Real-time token usage and cost tracking
 
-4. **Smart Caching**
+5. **Smart Caching**
    - Content-based hashing (SHA-256)
+   - Context-aware cache invalidation
    - 70% cost savings on reruns
    - 30-day cache duration
+   - Prompt version tracking
 
-5. **Multiple Export Formats**
+6. **Multiple Export Formats**
    - JSON for programmatic access
    - Markdown reports for sharing
    - Git patch files for applying changes

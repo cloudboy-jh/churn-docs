@@ -51,11 +51,30 @@ Analyzes entire codebase, highest API usage
 
 ## Staged Analysis
 
-Analyzes only files in your Git staging area.
+Analyzes only files in your Git staging area with intelligent differential analysis.
 
 ```bash
 churn run --staged
 ```
+
+### Smart Differential Analysis (v2.1.1+)
+
+Churn now intelligently uses **differential analysis** in staged mode, analyzing only the changed lines rather than entire files. This delivers significant performance improvements:
+
+- **70-90% token reduction** compared to full file analysis
+- **Automatic mode selection**: Churn evaluates whether diff analysis saves more than 500 tokens
+- **Graceful fallback**: If diffs exceed 100 items, falls back to comprehensive analysis
+- **Smart optimization**: Only changed code is analyzed, not entire files
+
+### How it works
+
+When you run staged analysis, Churn:
+
+1. Detects all staged files in your Git repository
+2. Calculates the diff for each file (what changed)
+3. Evaluates if diff analysis will save tokens (>500 token threshold)
+4. Uses diff mode for optimal files, full mode for others
+5. Analyzes only the relevant changes
 
 ### When to use
 
@@ -63,10 +82,14 @@ churn run --staged
 - Before commits
 - Quick quality checks
 - Cost-conscious analysis
+- Incremental code reviews
 
 ### Benefits
 
-80-90% cost savings compared to full analysis
+- **80-90% cost savings** compared to full analysis
+- **Faster analysis** by focusing only on changes
+- **Higher quality suggestions** targeted at your modifications
+- **Optimal for iterative development**
 
 ## File-Specific Analysis
 

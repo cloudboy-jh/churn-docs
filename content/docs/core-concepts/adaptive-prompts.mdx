@@ -1,0 +1,187 @@
+---
+title: Adaptive Prompts & Context Awareness
+description: How Churn optimizes analysis with language-specific prompts and framework detection
+---
+
+## Overview
+
+Starting with version 2.1.0, Churn uses **adaptive prompts** and **context awareness** to deliver more relevant, accurate suggestions while reducing token usage by 30-50%.
+
+## Adaptive Prompt System
+
+Churn automatically selects the optimal analysis prompt based on:
+
+- **File type and language**
+- **Project framework**
+- **File purpose** (config, test, source code)
+
+### Language-Specific Templates
+
+Churn includes specialized prompts for:
+
+- **TypeScript/JavaScript**: React patterns, hooks, async/await, type safety
+- **Python**: PEP 8 compliance, type hints, async patterns, decorators
+- **Rust**: Ownership, borrowing, lifetimes, error handling
+- **Go**: Goroutines, channels, error handling, idioms
+
+### Smart File Handling
+
+Different file types receive tailored analysis:
+
+- **Config files** (`.json`, `.yaml`, `.toml`): Minimal suggestions (0-2), focus on structure
+- **Test files** (`*.test.ts`, `*_test.py`): Quality improvements, avoid "add tests" suggestions
+- **Source files**: Full analysis with language-specific best practices
+
+## Context Detection
+
+Churn automatically detects your project's frameworks and tools to provide better suggestions.
+
+### Framework Detection
+
+Automatically detects and adapts to:
+
+<Tabs items={['Frontend', 'Backend', 'Tools']}>
+  <Tab value="Frontend">
+    - **React**: Hooks patterns, component optimization, prop types
+    - **Next.js**: Routing, SSR/SSG patterns, API routes, server components
+    - **Vue**: Composition API, reactivity, lifecycle hooks
+    - **Angular**: Dependency injection, RxJS patterns, decorators
+  </Tab>
+  <Tab value="Backend">
+    - **FastAPI**: Async patterns, dependency injection, Pydantic models
+    - **Django**: ORM patterns, security best practices, middleware
+    - **Flask**: Blueprint patterns, context management
+    - **Express**: Middleware patterns, async handling, error management
+  </Tab>
+  <Tab value="Tools">
+    - **npm/yarn/pnpm**: Package management patterns
+    - **Webpack/Vite/Rollup**: Build configuration
+    - **Jest/Vitest/Pytest**: Testing frameworks
+    - **TypeScript**: Configuration modes (strict, loose)
+  </Tab>
+</Tabs>
+
+### TypeScript Configuration
+
+Churn reads your `tsconfig.json` to understand:
+
+- **Strict mode** settings
+- **Target ECMAScript** version
+- **Module system** (CommonJS, ESM)
+- **Path mappings** and aliases
+
+This ensures suggestions align with your project's configuration.
+
+## Context Hashing
+
+Churn creates a **context hash** based on:
+
+- Detected frameworks
+- TypeScript configuration
+- Installed dependencies
+- Project structure
+
+This hash is used for:
+
+- Smart cache invalidation: Cache is invalidated when project context changes
+- Consistent analysis: Same context = same analysis approach  
+- Session optimization: Context detected once per session (less than 500ms overhead)
+
+## Performance Impact
+
+### Token Reduction
+
+Adaptive prompts reduce token usage by:
+
+- **30-50% overall** compared to generic prompts
+- Fewer irrelevant suggestions
+- More focused analysis
+- Better signal-to-noise ratio
+
+### Cache Efficiency
+
+Context-aware caching:
+
+- Cache entries track **prompt version** and **context hash**
+- Backward compatible with existing cache
+- Graceful degradation for old cache entries
+
+## How to Benefit
+
+**No configuration required!** Churn automatically:
+
+1. Scans your project structure
+2. Reads configuration files (`package.json`, `tsconfig.json`, etc.)
+3. Detects frameworks and tools
+4. Selects optimal prompts
+5. Caches context for session
+
+### Example
+
+```bash
+# Churn detects you're in a Next.js + TypeScript project
+cd my-nextjs-app
+churn run --staged
+
+# Output shows detected context
+✓ Detected: Next.js 15.0.0, React 19.0.0, TypeScript (strict mode)
+✓ Using adaptive prompts for: TypeScript, React, Next.js
+✓ Analyzing 5 staged files...
+```
+
+## Best Practices
+
+### Keep Configuration Files
+
+Ensure your project has:
+
+- `package.json` or `requirements.txt` for dependencies
+- `tsconfig.json` or language-specific config
+- Framework configuration files
+
+This helps Churn provide the most relevant suggestions.
+
+### Update Regularly
+
+Run `churn run` after:
+
+- Adding new frameworks or libraries
+- Changing TypeScript configuration
+- Major dependency updates
+
+Context is cached per session, so new sessions will pick up changes.
+
+## Technical Details
+
+### Context Detection Performance
+
+- Detection time: less than 500ms on first run
+- Cached per session: Subsequent analyses in same session skip detection
+- No network calls: All detection is local file reading
+
+### Supported Configuration Files
+
+- `package.json` - npm/yarn dependencies
+- `tsconfig.json` - TypeScript settings
+- `pyproject.toml` - Python project config
+- `Cargo.toml` - Rust project config
+- `go.mod` - Go module config
+
+### Prompt Versioning
+
+Each prompt template has a version number:
+
+- Cache entries store prompt version
+- Version changes invalidate relevant cache
+- Ensures consistent suggestions across updates
+
+## What's Next?
+
+Future improvements planned:
+
+- Custom analysis packs for specific use cases
+- Team-wide context profiles
+- Fine-tuned models on project context
+- Enhanced language support (Java, C++, etc.)
+
+Learn more about [caching](/docs/core-concepts/caching) and [performance optimization](/docs/performance).

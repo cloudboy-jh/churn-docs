@@ -4,6 +4,7 @@
     "index",
     "repository-detection",
     "analysis-modes",
+    "adaptive-prompts",
     "suggestion-categories",
     "severity-levels",
     "reports-and-exports",

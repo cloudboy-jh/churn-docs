@@ -1,0 +1,169 @@
+---
+title: Changelog
+description: Release notes and version history for Churn
+---
+
+## Version 2.1.1 - November 9, 2025
+
+### Stage 4: Differential Analysis Integration 🚀
+
+This update brings significant performance and cost optimizations to staged mode through intelligent differential analysis.
+
+#### New Features
+
+- **Smart Differential Analysis**: Analyzes only changed lines instead of entire files in staged mode
+- **Automatic Mode Selection**: Evaluates whether diff analysis saves >500 tokens before switching modes
+- **Graceful Fallback**: Falls back to comprehensive analysis if diffs exceed 100 items
+- **Enhanced Token Estimation**: Optimized calculations for diff scenarios (~50 chars/line)
+
+#### Performance Improvements
+
+- **70-90% token reduction** in staged mode
+- **Faster analysis** by focusing only on changes
+- **Better cost efficiency** for daily development workflows
+
+#### Technical Changes
+
+- Updated `analyzeFile()` to accept mode parameter ("full" or "diff") and FileDiff object
+- Enhanced `buildPrompt()` for specialized diff mode prompting
+- Added `shouldUseDiffAnalysis()`, `getStagedDiff()`, and `getFileDiff()` functions
+- Improved token estimation logic for differential scenarios
+
+#### Files Modified
+
+- `src/engine/analysis.ts` (+59 lines, -4 lines)
+- `src/engine/prompts.ts` (extended for diff mode)
+- `src/engine/differential.ts` (new utility functions)
+- `CHANGELOG.md` (+43 lines)
+- `package.json` (version bump to 2.1.1)
+
+---
+
+## Version 2.1.0 - November 8, 2025
+
+### Major Improvements: Adaptive Analysis & Context Awareness 🎯
+
+This release introduces intelligent, context-aware analysis with language-specific prompts and automatic framework detection.
+
+#### New Features
+
+##### 1. Adaptive Prompt System
+
+- **Language-Specific Templates**: Specialized prompts for TypeScript/JavaScript, Python, Rust, and Go
+- **Smart File Handling**: 
+  - Config files receive minimal suggestions (0-2)
+  - Test files get quality improvements without "add tests" suggestions
+  - Source files receive full language-specific analysis
+
+##### 2. Context Detection
+
+- **Automatic Framework Detection**:
+  - Frontend: React, Next.js, Vue, Angular
+  - Backend: FastAPI, Django, Flask, Express
+  - Tools: npm, yarn, bundlers, test frameworks
+- **TypeScript Configuration Reading**: Understands strict mode and compiler settings
+- **Context Hashing**: Smart cache invalidation based on project context
+
+##### 3. Enhanced Caching
+
+- Cache entries now track **prompt version** and **context hash**
+- Backward compatible with existing cache
+- Graceful degradation for older cache entries
+
+#### Performance Improvements
+
+- 30-50% token reduction through adaptive prompts
+- Context detection overhead: less than 500ms, cached per session
+- Better cache efficiency with context-aware invalidation
+
+#### Technical Changes
+
+**New Files:**
+- `src/engine/prompts.ts` - Adaptive prompt system
+- `src/engine/context.ts` - Framework and context detection
+- `src/engine/grouping.ts` - File grouping infrastructure (future features)
+- `src/engine/differential.ts` - Differential analysis foundation
+
+**Modified Files:**
+- `src/engine/analysis.ts` - Integrated adaptive prompts and context detection
+- `src/components/RunConsole.tsx` (+39 lines) - Enhanced UI with cache hits, token tracking, cost estimates
+- `package.json` - Version bump to 2.1.0
+- `CHANGELOG.md` (+90 lines)
+
+#### Developer Experience
+
+- Real-time cache hit indicators
+- Token usage and savings tracking
+- Estimated cost calculations with savings
+- Color-coded output (green for success, blue for info, yellow for warnings)
+
+#### Breaking Changes
+
+None - fully backward compatible
+
+---
+
+## Version 2.0.12 and Earlier
+
+See the [GitHub releases](https://github.com/cloudboy-jh/churn/releases) for version 2.0.x history.
+
+---
+
+## Upgrade Guide
+
+### From 2.1.0 to 2.1.1
+
+No breaking changes. Simply update:
+
+```bash
+# Using npm
+npm update -g churn-cli
+
+# Using bun
+bun update -g churn-cli
+
+# Using yarn
+yarn global upgrade churn-cli
+
+# Using pnpm
+pnpm update -g churn-cli
+```
+
+The differential analysis feature is automatically enabled in staged mode.
+
+### From 2.0.x to 2.1.x
+
+No configuration changes required. New features are automatically enabled:
+
+- Adaptive prompts will be used based on detected project context
+- Differential analysis activates in staged mode
+- Existing cache remains valid with graceful degradation
+
+---
+
+## Coming Soon
+
+### Planned for v2.2.0
+
+- Enhanced language support (Java, C++, C#)
+- Custom analysis packs
+- Team-wide configuration profiles
+- CI/CD integration templates
+
+### Planned for v3.0.0
+
+- Multi-repository analysis
+- Historical trend tracking
+- Visual dashboards
+- Custom model fine-tuning
+
+See the [Roadmap](/docs/roadmap) for more details.
+
+---
+
+## Getting Help
+
+- 📖 [Documentation](/)
+- 🐛 [Report Issues](https://github.com/cloudboy-jh/churn/issues)
+- 💬 [Discussions](https://github.com/cloudboy-jh/churn/discussions)
+- 🚀 [GitHub Repository](https://github.com/cloudboy-jh/churn)

@@ -3531,13 +3531,13 @@
       "imports": [],
       "format": "cjs"
     },
-    ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js": {
-      "bytes": 7528,
+    ".open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js": {
+      "bytes": 6066,
       "imports": [],
       "format": "cjs"
     },
-    ".open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js": {
-      "bytes": 6066,
+    ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js": {
+      "bytes": 7528,
       "imports": [],
       "format": "cjs"
     },
@@ -3575,14 +3575,14 @@
           "original": "/Users/johnhorton/churndocs/churn-docs/.open-next/server-functions/default/.next/server/app/page_client-reference-manifest.js"
         },
         {
-          "path": ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js",
-          "kind": "require-call",
-          "original": "/Users/johnhorton/churndocs/churn-docs/.open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js"
-        },
-        {
           "path": ".open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js",
           "kind": "require-call",
           "original": "/Users/johnhorton/churndocs/churn-docs/.open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js"
+        },
+        {
+          "path": ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js",
+          "kind": "require-call",
+          "original": "/Users/johnhorton/churndocs/churn-docs/.open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js"
         },
         {
           "path": ".open-next/server-functions/default/.next/server/app/docs/[[...slug]]/page_client-reference-manifest.js",
@@ -5498,305 +5498,305 @@
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/internal/debug.js": {
+    "node_modules/semver/internal/debug.js": {
       "bytes": 240,
       "imports": [],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/internal/constants.js": {
+    "node_modules/semver/internal/constants.js": {
       "bytes": 873,
       "imports": [],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/internal/re.js": {
+    "node_modules/semver/internal/re.js": {
       "bytes": 8141,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/constants.js",
+          "path": "node_modules/semver/internal/constants.js",
           "kind": "require-call",
           "original": "./constants"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/debug.js",
+          "path": "node_modules/semver/internal/debug.js",
           "kind": "require-call",
           "original": "./debug"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/internal/parse-options.js": {
+    "node_modules/semver/internal/parse-options.js": {
       "bytes": 338,
       "imports": [],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/internal/identifiers.js": {
+    "node_modules/semver/internal/identifiers.js": {
       "bytes": 525,
       "imports": [],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/classes/semver.js": {
+    "node_modules/semver/classes/semver.js": {
       "bytes": 9480,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/debug.js",
+          "path": "node_modules/semver/internal/debug.js",
           "kind": "require-call",
           "original": "../internal/debug"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/constants.js",
+          "path": "node_modules/semver/internal/constants.js",
           "kind": "require-call",
           "original": "../internal/constants"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/re.js",
+          "path": "node_modules/semver/internal/re.js",
           "kind": "require-call",
           "original": "../internal/re"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/parse-options.js",
+          "path": "node_modules/semver/internal/parse-options.js",
           "kind": "require-call",
           "original": "../internal/parse-options"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/identifiers.js",
+          "path": "node_modules/semver/internal/identifiers.js",
           "kind": "require-call",
           "original": "../internal/identifiers"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/parse.js": {
+    "node_modules/semver/functions/parse.js": {
       "bytes": 331,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/classes/semver.js",
+          "path": "node_modules/semver/classes/semver.js",
           "kind": "require-call",
           "original": "../classes/semver"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/coerce.js": {
+    "node_modules/semver/functions/coerce.js": {
       "bytes": 2004,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/classes/semver.js",
+          "path": "node_modules/semver/classes/semver.js",
           "kind": "require-call",
           "original": "../classes/semver"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/parse.js",
+          "path": "node_modules/semver/functions/parse.js",
           "kind": "require-call",
           "original": "./parse"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/re.js",
+          "path": "node_modules/semver/internal/re.js",
           "kind": "require-call",
           "original": "../internal/re"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/compare.js": {
+    "node_modules/semver/functions/compare.js": {
       "bytes": 170,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/classes/semver.js",
+          "path": "node_modules/semver/classes/semver.js",
           "kind": "require-call",
           "original": "../classes/semver"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/gte.js": {
+    "node_modules/semver/functions/gte.js": {
       "bytes": 127,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/compare.js",
+          "path": "node_modules/semver/functions/compare.js",
           "kind": "require-call",
           "original": "./compare"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/internal/lrucache.js": {
+    "node_modules/semver/internal/lrucache.js": {
       "bytes": 802,
       "imports": [],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/eq.js": {
+    "node_modules/semver/functions/eq.js": {
       "bytes": 126,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/compare.js",
+          "path": "node_modules/semver/functions/compare.js",
           "kind": "require-call",
           "original": "./compare"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/neq.js": {
+    "node_modules/semver/functions/neq.js": {
       "bytes": 128,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/compare.js",
+          "path": "node_modules/semver/functions/compare.js",
           "kind": "require-call",
           "original": "./compare"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/gt.js": {
+    "node_modules/semver/functions/gt.js": {
       "bytes": 124,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/compare.js",
+          "path": "node_modules/semver/functions/compare.js",
           "kind": "require-call",
           "original": "./compare"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/lt.js": {
+    "node_modules/semver/functions/lt.js": {
       "bytes": 124,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/compare.js",
+          "path": "node_modules/semver/functions/compare.js",
           "kind": "require-call",
           "original": "./compare"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/lte.js": {
+    "node_modules/semver/functions/lte.js": {
       "bytes": 127,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/compare.js",
+          "path": "node_modules/semver/functions/compare.js",
           "kind": "require-call",
           "original": "./compare"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/cmp.js": {
+    "node_modules/semver/functions/cmp.js": {
       "bytes": 961,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/eq.js",
+          "path": "node_modules/semver/functions/eq.js",
           "kind": "require-call",
           "original": "./eq"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/neq.js",
+          "path": "node_modules/semver/functions/neq.js",
           "kind": "require-call",
           "original": "./neq"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/gt.js",
+          "path": "node_modules/semver/functions/gt.js",
           "kind": "require-call",
           "original": "./gt"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/gte.js",
+          "path": "node_modules/semver/functions/gte.js",
           "kind": "require-call",
           "original": "./gte"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/lt.js",
+          "path": "node_modules/semver/functions/lt.js",
           "kind": "require-call",
           "original": "./lt"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/lte.js",
+          "path": "node_modules/semver/functions/lte.js",
           "kind": "require-call",
           "original": "./lte"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/classes/comparator.js": {
+    "node_modules/semver/classes/comparator.js": {
       "bytes": 3631,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/parse-options.js",
+          "path": "node_modules/semver/internal/parse-options.js",
           "kind": "require-call",
           "original": "../internal/parse-options"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/re.js",
+          "path": "node_modules/semver/internal/re.js",
           "kind": "require-call",
           "original": "../internal/re"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/cmp.js",
+          "path": "node_modules/semver/functions/cmp.js",
           "kind": "require-call",
           "original": "../functions/cmp"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/debug.js",
+          "path": "node_modules/semver/internal/debug.js",
           "kind": "require-call",
           "original": "../internal/debug"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/classes/semver.js",
+          "path": "node_modules/semver/classes/semver.js",
           "kind": "require-call",
           "original": "./semver"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/classes/range.js",
+          "path": "node_modules/semver/classes/range.js",
           "kind": "require-call",
           "original": "./range"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/classes/range.js": {
+    "node_modules/semver/classes/range.js": {
       "bytes": 14977,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/lrucache.js",
+          "path": "node_modules/semver/internal/lrucache.js",
           "kind": "require-call",
           "original": "../internal/lrucache"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/parse-options.js",
+          "path": "node_modules/semver/internal/parse-options.js",
           "kind": "require-call",
           "original": "../internal/parse-options"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/classes/comparator.js",
+          "path": "node_modules/semver/classes/comparator.js",
           "kind": "require-call",
           "original": "./comparator"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/debug.js",
+          "path": "node_modules/semver/internal/debug.js",
           "kind": "require-call",
           "original": "../internal/debug"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/classes/semver.js",
+          "path": "node_modules/semver/classes/semver.js",
           "kind": "require-call",
           "original": "./semver"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/re.js",
+          "path": "node_modules/semver/internal/re.js",
           "kind": "require-call",
           "original": "../internal/re"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/internal/constants.js",
+          "path": "node_modules/semver/internal/constants.js",
           "kind": "require-call",
           "original": "../internal/constants"
         }
       ],
       "format": "cjs"
     },
-    "node_modules/sharp/node_modules/semver/functions/satisfies.js": {
+    "node_modules/semver/functions/satisfies.js": {
       "bytes": 247,
       "imports": [
         {
-          "path": "node_modules/sharp/node_modules/semver/classes/range.js",
+          "path": "node_modules/semver/classes/range.js",
           "kind": "require-call",
           "original": "../classes/range"
         }
@@ -5821,17 +5821,17 @@
           "external": true
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/coerce.js",
+          "path": "node_modules/semver/functions/coerce.js",
           "kind": "require-call",
           "original": "semver/functions/coerce"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/gte.js",
+          "path": "node_modules/semver/functions/gte.js",
           "kind": "require-call",
           "original": "semver/functions/gte"
         },
         {
-          "path": "node_modules/sharp/node_modules/semver/functions/satisfies.js",
+          "path": "node_modules/semver/functions/satisfies.js",
           "kind": "require-call",
           "original": "semver/functions/satisfies"
         },
@@ -8004,11 +8004,11 @@
         ".open-next/server-functions/default/.next/server/app/page_client-reference-manifest.js": {
           "bytesInOutput": 6503
         },
-        ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js": {
-          "bytesInOutput": 7236
-        },
         ".open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js": {
           "bytesInOutput": 5832
+        },
+        ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js": {
+          "bytesInOutput": 7236
         },
         ".open-next/server-functions/default/.next/server/app/docs/[[...slug]]/page_client-reference-manifest.js": {
           "bytesInOutput": 40296
@@ -8376,65 +8376,65 @@
         "node_modules/detect-libc/lib/detect-libc.js": {
           "bytesInOutput": 4748
         },
-        "node_modules/sharp/node_modules/semver/internal/debug.js": {
-          "bytesInOutput": 311
+        "node_modules/semver/internal/debug.js": {
+          "bytesInOutput": 292
         },
-        "node_modules/sharp/node_modules/semver/internal/constants.js": {
-          "bytesInOutput": 532
+        "node_modules/semver/internal/constants.js": {
+          "bytesInOutput": 513
         },
-        "node_modules/sharp/node_modules/semver/internal/re.js": {
-          "bytesInOutput": 4523
+        "node_modules/semver/internal/re.js": {
+          "bytesInOutput": 4504
         },
-        "node_modules/sharp/node_modules/semver/internal/parse-options.js": {
-          "bytesInOutput": 320
+        "node_modules/semver/internal/parse-options.js": {
+          "bytesInOutput": 301
         },
-        "node_modules/sharp/node_modules/semver/internal/identifiers.js": {
-          "bytesInOutput": 480
+        "node_modules/semver/internal/identifiers.js": {
+          "bytesInOutput": 461
         },
-        "node_modules/sharp/node_modules/semver/classes/semver.js": {
-          "bytesInOutput": 5255
+        "node_modules/semver/classes/semver.js": {
+          "bytesInOutput": 5236
         },
-        "node_modules/sharp/node_modules/semver/functions/parse.js": {
-          "bytesInOutput": 346
+        "node_modules/semver/functions/parse.js": {
+          "bytesInOutput": 327
         },
-        "node_modules/sharp/node_modules/semver/functions/coerce.js": {
-          "bytesInOutput": 1164
+        "node_modules/semver/functions/coerce.js": {
+          "bytesInOutput": 1145
         },
-        "node_modules/sharp/node_modules/semver/functions/compare.js": {
-          "bytesInOutput": 247
+        "node_modules/semver/functions/compare.js": {
+          "bytesInOutput": 228
         },
-        "node_modules/sharp/node_modules/semver/functions/gte.js": {
-          "bytesInOutput": 206
+        "node_modules/semver/functions/gte.js": {
+          "bytesInOutput": 187
         },
-        "node_modules/sharp/node_modules/semver/internal/lrucache.js": {
-          "bytesInOutput": 550
+        "node_modules/semver/internal/lrucache.js": {
+          "bytesInOutput": 531
         },
-        "node_modules/sharp/node_modules/semver/functions/eq.js": {
-          "bytesInOutput": 203
+        "node_modules/semver/functions/eq.js": {
+          "bytesInOutput": 184
         },
-        "node_modules/sharp/node_modules/semver/functions/neq.js": {
-          "bytesInOutput": 207
+        "node_modules/semver/functions/neq.js": {
+          "bytesInOutput": 188
         },
-        "node_modules/sharp/node_modules/semver/functions/gt.js": {
-          "bytesInOutput": 201
+        "node_modules/semver/functions/gt.js": {
+          "bytesInOutput": 182
         },
-        "node_modules/sharp/node_modules/semver/functions/lt.js": {
-          "bytesInOutput": 201
+        "node_modules/semver/functions/lt.js": {
+          "bytesInOutput": 182
         },
-        "node_modules/sharp/node_modules/semver/functions/lte.js": {
-          "bytesInOutput": 206
+        "node_modules/semver/functions/lte.js": {
+          "bytesInOutput": 187
         },
-        "node_modules/sharp/node_modules/semver/functions/cmp.js": {
-          "bytesInOutput": 710
+        "node_modules/semver/functions/cmp.js": {
+          "bytesInOutput": 691
         },
-        "node_modules/sharp/node_modules/semver/classes/comparator.js": {
-          "bytesInOutput": 2296
+        "node_modules/semver/classes/comparator.js": {
+          "bytesInOutput": 2277
         },
-        "node_modules/sharp/node_modules/semver/classes/range.js": {
-          "bytesInOutput": 7526
+        "node_modules/semver/classes/range.js": {
+          "bytesInOutput": 7507
         },
-        "node_modules/sharp/node_modules/semver/functions/satisfies.js": {
-          "bytesInOutput": 295
+        "node_modules/semver/functions/satisfies.js": {
+          "bytesInOutput": 276
         },
         "node_modules/sharp/package.json": {
           "bytesInOutput": 6610
@@ -8506,7 +8506,7 @@
           "bytesInOutput": 64540
         }
       },
-      "bytes": 2831197
+      "bytes": 2830817
     }
   }
 }

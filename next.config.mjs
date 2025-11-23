@@ -5,6 +5,11 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+  distDir: ".vercel/output/static",
 };
 
 export default withMDX(config);

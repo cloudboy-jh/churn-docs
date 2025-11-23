@@ -7,6 +7,7 @@ import {
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Mermaid } from "@/components/mdx/mermaid";
 
 export default async function Page({
@@ -25,10 +26,14 @@ export default async function Page({
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ ...defaultMdxComponents, Mermaid }} />
+        <MDX components={{ ...defaultMdxComponents, Mermaid, Tab, Tabs }} />
       </DocsBody>
     </DocsPage>
   );
+}
+
+export async function generateStaticParams() {
+  return source.generateParams();
 }
 
 export async function generateMetadata({

@@ -1,0 +1,9 @@
+{
+  "production_branch": "master",
+  "build": {
+    "command": "npm run build",
+    "output_directory": ".vercel/output/static",
+    "root_directory": "",
+    "environment_variables": {}
+  }
+}

@@ -3,6 +3,96 @@ title: Changelog
 description: Release notes and version history for Churn
 ---
 
+## Version 2.1.7 - November 23, 2025
+
+### API Key Management Enhancement 🔑
+
+This update adds transparency to API key management with age tracking, helping you maintain secure and up-to-date credentials.
+
+#### New Features
+
+- **API Key Age Tracking**: Visual display showing when keys were last updated
+- **Human-Readable Timestamps**: Shows "just now", "5 minutes ago", "2 days ago", etc.
+- **Automatic Recording**: Timestamps are saved automatically when keys are set or replaced
+- **Legacy Support**: Gracefully handles older configurations showing "unknown" until updated
+
+#### Technical Changes
+
+- Extended `ChurnConfig` interface with `apiKeyTimestamps` field
+- Enhanced `setApiKey()` method to record update timestamps automatically
+- Added `getApiKeyTimestamp()` helper function in config.ts
+- Implemented `formatKeyAge()` utility for human-friendly time formatting
+- Uses ISO 8601 format for timestamp consistency
+- ModelSelect UI enhanced with key age information display
+
+#### Files Modified
+
+- `src/config/config.ts` (API key timestamp tracking)
+- `src/components/ModelSelect.tsx` (UI enhancements)
+- `CHANGELOG.md` (updated documentation)
+- `package.json` (version bump to 2.1.7)
+
+---
+
+## Version 2.1.6 - November 23, 2025
+
+### Agent Handoff System 🤝
+
+This release introduces seamless integration with AI coding agents, enabling smooth transitions from analysis to implementation.
+
+#### New Features
+
+##### 1. Agent Handoff System
+
+- **Interactive Handoff Prompt**: "Launch agent now? Y/N/C" after export completion
+- **Multi-Agent Support**: 
+  - Claude Code
+  - Cursor
+  - Gemini CLI
+  - Codex
+- **Agent Availability Checking**: Verifies agent is installed before attempting launch
+- **Configurable Context Formats**: 
+  - Minimal (MD+JSON)
+  - Comprehensive options
+
+##### 2. Enhanced Export Command
+
+New flags for `churn pass` command:
+- `--to <agent>`: Specify target agent (claude-code, cursor, gemini, codex)
+- `--format <type>`: Set context format (minimal, comprehensive)
+- `--launch`: Auto-launch agent without interactive prompt
+
+##### 3. Handoff Settings UI
+
+- New interactive configuration component
+- Persistent preference storage
+- User-friendly agent selection
+
+#### Technical Changes
+
+**New Files:**
+- `src/engine/handoff.ts` - Core handoff engine
+- `src/components/HandoffSettings.tsx` - Interactive configuration UI
+
+**Modified Files:**
+- `src/components/ExportPanel.tsx` - Added handoff callback support
+- `src/config/config.ts` - Extended with `HandoffConfig` type
+- `src/App.tsx` - Added "handoff-settings" phase to state machine
+- `package.json` - Version bump to 2.1.6
+- `CHANGELOG.md` - Updated documentation
+
+#### Developer Experience
+
+- Type-safe agent selection with `AgentType` union type
+- Agent adapters for building provider-specific CLI commands
+- Removed emojis from handoff-related output for cleaner terminal display
+
+#### Breaking Changes
+
+None - fully backward compatible
+
+---
+
 ## Version 2.1.1 - November 9, 2025
 
 ### Stage 4: Differential Analysis Integration 🚀
@@ -111,7 +201,7 @@ See the [GitHub releases](https://github.com/cloudboy-jh/churn/releases) for ver
 
 ## Upgrade Guide
 
-### From 2.1.0 to 2.1.1
+### From 2.1.6 to 2.1.7
 
 No breaking changes. Simply update:
 
@@ -128,6 +218,21 @@ yarn global upgrade churn-cli
 # Using pnpm
 pnpm update -g churn-cli
 ```
+
+API key age tracking is automatically enabled. Existing keys will show "unknown" age until updated.
+
+### From 2.1.1 to 2.1.6
+
+No breaking changes. Simply update using the commands above.
+
+New features:
+- Agent handoff system is available via `churn pass` command with new flags
+- Configure handoff preferences via the new HandoffSettings UI
+- Legacy configurations work without modification
+
+### From 2.1.0 to 2.1.1
+
+No breaking changes. Simply update using the commands above.
 
 The differential analysis feature is automatically enabled in staged mode.
 

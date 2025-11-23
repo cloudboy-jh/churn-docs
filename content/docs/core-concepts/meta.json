@@ -8,6 +8,7 @@
     "suggestion-categories",
     "severity-levels",
     "reports-and-exports",
+    "agent-handoff",
     "churn-workflow"
   ]
 }

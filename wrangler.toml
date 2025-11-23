@@ -1,5 +1,7 @@
 name = "churn-docs"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
+main = ".open-next/worker.js"
 
-pages_build_output_dir = ".worker-next/dist"
+[assets]
+directory = ".open-next/assets"

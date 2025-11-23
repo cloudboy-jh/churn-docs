@@ -1,0 +1,475 @@
+---
+title: Agent Handoff
+description: Seamlessly transition from analysis to implementation with AI coding agents
+---
+
+The Agent Handoff system enables smooth integration between Churn's analysis phase and AI coding agents, allowing you to automatically pass recommendations to your preferred development assistant for immediate implementation.
+
+## Overview
+
+After Churn completes its analysis and generates suggestions, the handoff system can:
+
+1. Export analysis results in agent-optimized formats
+2. Detect available AI coding agents on your system
+3. Launch the agent with full context about suggested changes
+4. Pass structured data for efficient implementation
+
+## Supported Agents
+
+Churn supports handoff to the following AI coding agents:
+
+| Agent | Command | Description |
+|-------|---------|-------------|
+| **Claude Code** | `claude-code` | Anthropic's AI coding assistant with full codebase context |
+| **Cursor** | `cursor` | AI-powered code editor with chat interface |
+| **Gemini CLI** | `gemini` | Google's AI coding assistant |
+| **Codex** | `codex` | OpenAI's code generation system |
+
+## Handoff Process
+
+### 1. Automatic Handoff (Interactive)
+
+After running analysis and exporting results:
+
+```bash
+churn analyze
+churn export
+```
+
+Churn will prompt you:
+
+```
+Analysis exported successfully!
+Launch agent now? (Y/N/C)
+```
+
+**Options:**
+- `Y` (Yes): Launch the configured default agent
+- `N` (No): Skip handoff and continue
+- `C` (Configure): Open handoff settings to choose agent and preferences
+
+### 2. Direct Handoff with Flags
+
+Pass analysis directly to a specific agent:
+
+```bash
+# Analyze and hand off to Claude Code
+churn pass --to claude-code
+
+# Analyze and hand off to Cursor with comprehensive context
+churn pass --to cursor --format comprehensive
+
+# Auto-launch without prompting
+churn pass --to gemini --launch
+```
+
+### 3. Manual Export and Launch
+
+Export in agent-compatible format, then launch separately:
+
+```bash
+# Export with agent-specific formatting
+churn export --agent-format claude-code
+
+# Later, manually launch agent
+claude-code .churn/handoff/context.md
+```
+
+## Handoff Command Flags
+
+### `--to <agent>`
+
+Specify the target agent for handoff.
+
+**Values:** `claude-code`, `cursor`, `gemini`, `codex`
+
+```bash
+churn pass --to claude-code
+```
+
+### `--format <type>`
+
+Choose the context format for handoff.
+
+**Values:**
+- `minimal`: Markdown report + JSON suggestions (fastest, ~50KB)
+- `comprehensive`: Full analysis with diffs, code snippets, and metadata (~200KB)
+
+```bash
+churn pass --to cursor --format comprehensive
+```
+
+### `--launch`
+
+Auto-launch the agent immediately without interactive prompt.
+
+```bash
+churn pass --to claude-code --launch
+```
+
+## Context Formats
+
+### Minimal Format
+
+**Best for:** Quick iterations, focused changes, bandwidth-conscious scenarios
+
+**Includes:**
+- Summary of findings
+- Categorized suggestions
+- File paths and line numbers
+- Brief descriptions
+- JSON data structure
+
+**Example output:**
+```
+.churn/handoff/
+├── report.md          # Human-readable summary
+└── suggestions.json   # Machine-readable data
+```
+
+### Comprehensive Format
+
+**Best for:** Complex refactoring, architectural changes, detailed context needs
+
+**Includes:**
+- Full analysis report with explanations
+- Code diffs for each suggestion
+- Context snippets (before/after)
+- Severity analysis
+- File relationship diagrams
+- Historical churn data
+- Framework detection results
+
+**Example output:**
+```
+.churn/handoff/
+├── report.md              # Detailed report
+├── suggestions.json       # Complete suggestion data
+├── diffs/                 # Individual diff files
+└── context.json           # Project metadata
+```
+
+## Configuration
+
+### Setting Default Agent
+
+Configure your preferred agent in `.churn/config.json`:
+
+```json
+{
+  "handoff": {
+    "defaultAgent": "claude-code",
+    "defaultFormat": "minimal",
+    "autoLaunch": false,
+    "verifyAgentAvailability": true
+  }
+}
+```
+
+### Interactive Configuration
+
+Run the handoff settings UI:
+
+```bash
+churn config handoff
+```
+
+This opens an interactive menu to:
+- Select default agent
+- Choose preferred format
+- Enable/disable auto-launch
+- Test agent availability
+
+## Agent-Specific Features
+
+### Claude Code
+
+**Strengths:**
+- Full codebase context awareness
+- Multi-file refactoring
+- Architectural understanding
+
+**Optimal format:** Comprehensive
+
+**Launch command:**
+```bash
+claude-code --context .churn/handoff/report.md
+```
+
+### Cursor
+
+**Strengths:**
+- Visual code editor integration
+- Real-time suggestions
+- Chat-based interaction
+
+**Optimal format:** Minimal
+
+**Launch command:**
+```bash
+cursor .churn/handoff/report.md
+```
+
+### Gemini CLI
+
+**Strengths:**
+- Fast iteration
+- Terminal-native workflow
+- Google Cloud integration
+
+**Optimal format:** Minimal
+
+**Launch command:**
+```bash
+gemini --file .churn/handoff/suggestions.json
+```
+
+### Codex
+
+**Strengths:**
+- Code completion focus
+- API-driven integration
+- Custom workflows
+
+**Optimal format:** Minimal (JSON-focused)
+
+**Launch command:**
+```bash
+codex apply .churn/handoff/suggestions.json
+```
+
+## Workflow Examples
+
+### Example 1: Quick Fix Workflow
+
+```bash
+# Analyze only changed files
+churn analyze --staged
+
+# Review suggestions
+churn review
+
+# Pass to Claude Code for implementation
+churn pass --to claude-code --format minimal --launch
+```
+
+### Example 2: Comprehensive Refactoring
+
+```bash
+# Full repository analysis
+churn analyze --mode comprehensive
+
+# Export detailed context
+churn export --format comprehensive
+
+# Interactive handoff (choose agent)
+churn pass
+# Prompt: Launch agent now? (Y/N/C)
+# Choose: C (Configure) -> Select Cursor
+```
+
+### Example 3: CI/CD Integration
+
+```bash
+# In CI pipeline
+churn analyze --mode full --export
+
+# Check if changes meet quality threshold
+if [ $? -eq 0 ]; then
+  # Auto-hand off to agent for review
+  churn pass --to claude-code --format comprehensive --launch
+fi
+```
+
+## Handoff Data Structure
+
+The handoff package includes structured data for agent consumption:
+
+### report.md
+```markdown
+# Churn Analysis - Handoff Report
+
+**Generated:** 2025-11-23T14:30:00Z
+**Files Analyzed:** 42
+**Suggestions:** 18
+
+## High Priority
+
+### src/utils/validation.ts
+- **Line 67:** Add input sanitization
+- **Severity:** High
+- **Category:** Security
+
+[Additional suggestions...]
+```
+
+### suggestions.json
+```json
+{
+  "metadata": {
+    "timestamp": "2025-11-23T14:30:00Z",
+    "churnVersion": "2.1.6",
+    "targetAgent": "claude-code",
+    "format": "comprehensive"
+  },
+  "suggestions": [
+    {
+      "id": "sg_001",
+      "file": "src/utils/validation.ts",
+      "line": 67,
+      "category": "security",
+      "severity": "high",
+      "description": "Add input sanitization",
+      "recommendation": "Implement XSS protection...",
+      "diff": "...",
+      "context": {
+        "before": "...",
+        "after": "..."
+      }
+    }
+  ]
+}
+```
+
+## Agent Availability Checking
+
+Churn automatically verifies that the target agent is installed:
+
+```bash
+churn pass --to cursor
+```
+
+If Cursor is not found:
+```
+⚠️  Warning: 'cursor' command not found
+Would you like to:
+  1. Install Cursor
+  2. Choose a different agent
+  3. Cancel handoff
+```
+
+Disable availability checking:
+```bash
+churn pass --to cursor --no-verify
+```
+
+## Troubleshooting
+
+### Agent Not Found
+
+**Problem:** `Error: Agent 'claude-code' not found in PATH`
+
+**Solutions:**
+1. Verify agent installation: `which claude-code`
+2. Add agent to PATH: `export PATH=$PATH:/path/to/agent`
+3. Use full path: `churn config set handoff.claudeCodePath /usr/local/bin/claude-code`
+
+### Handoff Files Not Generated
+
+**Problem:** No files in `.churn/handoff/` directory
+
+**Solutions:**
+1. Ensure analysis completed: `churn analyze`
+2. Check export status: `churn export --verbose`
+3. Verify write permissions: `ls -la .churn/`
+
+### Agent Launch Fails
+
+**Problem:** Agent starts but doesn't load context
+
+**Solutions:**
+1. Check context file exists: `ls .churn/handoff/report.md`
+2. Try manual launch: `cursor .churn/handoff/report.md`
+3. Use absolute paths: `churn pass --to cursor --absolute-paths`
+
+## Best Practices
+
+### 1. Choose the Right Format
+
+- Use **minimal** for: Daily development, quick fixes, single-file changes
+- Use **comprehensive** for: Refactoring, architecture changes, complex features
+
+### 2. Verify Before Launch
+
+Always review suggestions before handing off:
+```bash
+churn review    # Review in terminal
+churn pass      # Then hand off
+```
+
+### 3. Staged Analysis for Speed
+
+Analyze only changed files for faster handoff:
+```bash
+churn analyze --staged
+churn pass --to claude-code
+```
+
+### 4. Custom Agent Commands
+
+For specialized workflows, create custom handoff scripts:
+
+```bash
+# .churn/scripts/handoff-custom.sh
+#!/bin/bash
+churn export --format comprehensive
+my-custom-agent --load .churn/handoff/report.md --mode review
+```
+
+### 5. Team Consistency
+
+Commit handoff configuration for team consistency:
+
+```json
+// .churn/config.json (commit to repo)
+{
+  "handoff": {
+    "defaultAgent": "cursor",
+    "defaultFormat": "minimal",
+    "autoLaunch": false
+  }
+}
+```
+
+## Security Considerations
+
+### API Keys
+
+Churn does not pass API keys to agents. Each agent uses its own authentication.
+
+### Code Exposure
+
+Handoff files contain code snippets. Be cautious when:
+- Working with proprietary code
+- Handling sensitive data
+- Using cloud-based agents
+
+Use minimal format to reduce code exposure, or exclude sensitive files:
+
+```bash
+churn analyze --exclude "src/secrets/**"
+churn pass --format minimal
+```
+
+### Agent Trust
+
+Only use agents you trust, as they receive full access to:
+- Analysis results
+- Code suggestions
+- Project structure
+
+## Future Enhancements
+
+Planned for upcoming versions:
+
+- **v2.2**: Custom agent adapters, agent plugins
+- **v2.3**: Multi-agent coordination, agent comparison
+- **v3.0**: Agent performance tracking, handoff analytics
+
+See the [Roadmap](/docs/roadmap) for more details.
+
+## Related Documentation
+
+- [Reports and Exports](/docs/core-concepts/reports-and-exports) - Understanding export formats
+- [Churn Workflow](/docs/core-concepts/churn-workflow) - Complete workflow guide
+- [Analysis Modes](/docs/core-concepts/analysis-modes) - Different analysis options

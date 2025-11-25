@@ -3,172 +3,78 @@ title: Quick Start
 description: Run your first analysis in a few minutes
 ---
 
-Run your first code analysis with Churn.
+Run your first code analysis with Churn using the interactive TUI.
 
-## Step 1: Navigate to Your Repository
+## Launch Churn
 
-Churn works with any Git repository. Navigate to your project:
+Navigate to any Git repository and start the interactive interface:
 
 ```bash
 cd /path/to/your/project
+churn start
 ```
 
-## Step 2: Select an AI Provider
+The TUI guides you through everything—model selection, analysis, and reviewing suggestions.
 
-On first run, Churn will ask you to select an AI provider:
+## What You'll See
 
-```bash
-churn model
-```
+### 1. Model Selection
 
-You'll see a list of available providers:
+On first run, you'll be prompted to select an AI provider:
 
 - **Anthropic Claude** (Recommended)
 - **OpenAI GPT**
 - **Google Gemini**
 - **Ollama** (Local, free, private)
 
-### Choosing a Model
+For daily development, we recommend **Claude Haiku** (fast and cost-effective) or **Ollama with deepseek-r1** (free, local, private).
 
-For daily development, we recommend:
-- **Claude Haiku**: Fast and cost-effective
-- **Ollama (deepseek-r1)**: Free, local, private
+For important releases, use **Claude Sonnet** or **Claude Opus** for maximum quality.
 
-For important releases:
-- **Claude Sonnet**: Balanced quality and cost
-- **Claude Opus**: Maximum quality
+### 2. API Key Configuration
 
-## Step 3: Configure API Keys
+If using a cloud provider, you'll be prompted to enter your API key:
 
-If using a cloud provider (Anthropic, OpenAI, Google), you'll need an API key:
+- **Anthropic**: Get your key at [console.anthropic.com](https://console.anthropic.com)
+- **OpenAI**: Get your key at [platform.openai.com](https://platform.openai.com)
+- **Google**: Get your key at [aistudio.google.com](https://aistudio.google.com)
+- **Ollama**: No API key needed—just [install Ollama](/docs/ollama) first
 
-### Anthropic Claude
+### 3. Analysis Options
 
-1. Visit [console.anthropic.com](https://console.anthropic.com)
-2. Create an API key
-3. Paste it when prompted
+The TUI presents analysis options:
 
-### OpenAI GPT
+- **Staged files**: Analyze only files in your Git staging area
+- **Full repository**: Scan your entire codebase
+- **Specific files**: Select files or patterns to analyze
 
-1. Visit [platform.openai.com](https://platform.openai.com)
-2. Create an API key
-3. Paste it when prompted
+### 4. Review Suggestions
 
-### Google Gemini
+After analysis, navigate suggestions interactively:
 
-1. Visit [aistudio.google.com](https://aistudio.google.com)
-2. Create an API key
-3. Paste it when prompted
+| Key | Action |
+|-----|--------|
+| ↑/↓ | Navigate between suggestions |
+| Enter | View details |
+| A | Accept suggestion |
+| R | Reject suggestion |
+| Q | Quit |
 
-### Ollama (Local)
-
-No API key needed! Just [install Ollama](/docs/ollama) and pull a model:
-
-```bash
-ollama pull deepseek-r1
-```
-
-## Step 4: Run Your First Analysis
-
-Start with a staged analysis (analyzes only files you've added to Git staging):
-
-```bash
-# Stage some files
-git add src/components/Button.tsx
-
-# Run analysis
-churn run --staged
-```
-
-Or run a full repository analysis:
-
-```bash
-churn run
-```
-
-### What Happens
-
-1. Detects your repository
-2. Shows file count and estimated cost
-3. Streams analysis progress
-4. Displays summary of findings
-
-## Step 5: Review the Results
-
-After analysis completes, review suggestions interactively:
-
-```bash
-churn review
-```
-
-### Navigation
-
-- **↑/↓**: Navigate between suggestions
-- **Enter**: View details
-- **A**: Accept suggestion
-- **R**: Reject suggestion
-- **Q**: Quit
-
-### Understanding Suggestions
-
-Each suggestion includes:
+Each suggestion shows:
 - **Category**: refactor, bug, optimization, style, documentation
 - **Severity**: low, medium, high
 - **Description**: What the issue is
 - **Recommendation**: How to fix it
 - **Code Diff**: Before and after (when applicable)
 
-## Step 6: Export Results
+### 5. Export Results
 
-Export your analysis in multiple formats:
-
-```bash
-churn export
-```
-
-This creates:
-- `.churn/patches/suggestions-*.json` - Full JSON report
-- `.churn/patches/report-*.md` - Human-readable Markdown
-- `.churn/patches/changes-*.patch` - Git patch file
-
-## Common Workflows
-
-### Daily Development
-
-```bash
-# Work on your code
-git add src/features/auth.ts
-
-# Quick check with cheap model
-churn model  # Select Haiku
-churn run --staged
-
-# Review and apply
-churn review
-```
-
-### Pre-Release Quality Check
-
-```bash
-# Switch to better model
-churn model  # Select Sonnet
-
-# Full repository scan
-churn run
-
-# Export report for team
-churn export
-```
-
-### Specific Files Analysis
-
-```bash
-# Analyze specific patterns
-churn run --files "src/components/**/*.tsx"
-```
+From the TUI, export your analysis in multiple formats:
+- `.churn/patches/suggestions-*.json` — Full JSON report
+- `.churn/patches/report-*.md` — Human-readable Markdown
+- `.churn/patches/changes-*.patch` — Git patch file
 
 ## Next Steps
 
-- [CLI Reference](/docs/cli-reference) — All commands
 - [Ollama Setup](/docs/ollama) — Free local analysis
 - [Analysis Modes](/docs/core-concepts/analysis-modes) — Full vs staged vs file-specific

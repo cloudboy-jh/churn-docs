@@ -2,4 +2,4 @@ name = "churn-docs"
 compatibility_date = "2025-11-06"
 compatibility_flags = ["nodejs_compat"]
 
-pages_build_output_dir = ".open-next"
+pages_build_output_dir = "out"

@@ -3542,12 +3542,12 @@
       "format": "cjs"
     },
     ".open-next/server-functions/default/.next/server/app/docs/[[...slug]]/page_client-reference-manifest.js": {
-      "bytes": 41460,
+      "bytes": 44212,
       "imports": [],
       "format": "cjs"
     },
     ".open-next/server-functions/default/node_modules/next/dist/server/load-manifest.external.js": {
-      "bytes": 19238,
+      "bytes": 29680,
       "imports": [
         {
           "path": "path",
@@ -4411,7 +4411,7 @@
       "format": "cjs"
     },
     "node_modules/next/dist/server/load-manifest.external.js": {
-      "bytes": 19238,
+      "bytes": 29680,
       "imports": [
         {
           "path": "path",
@@ -8011,10 +8011,10 @@
           "bytesInOutput": 7236
         },
         ".open-next/server-functions/default/.next/server/app/docs/[[...slug]]/page_client-reference-manifest.js": {
-          "bytesInOutput": 40296
+          "bytesInOutput": 43000
         },
         ".open-next/server-functions/default/node_modules/next/dist/server/load-manifest.external.js": {
-          "bytesInOutput": 13152
+          "bytesInOutput": 19854
         },
         ".open-next/server-functions/default/.next/server/chunks/ssr/[turbopack]_runtime.js": {
           "bytesInOutput": 14877
@@ -8170,7 +8170,7 @@
           "bytesInOutput": 551
         },
         "node_modules/next/dist/server/load-manifest.external.js": {
-          "bytesInOutput": 13118
+          "bytesInOutput": 19820
         },
         "node_modules/next/dist/lib/picocolors.js": {
           "bytesInOutput": 2863
@@ -8506,7 +8506,7 @@
           "bytesInOutput": 64540
         }
       },
-      "bytes": 2830817
+      "bytes": 2846925
     }
   }
 }

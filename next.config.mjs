@@ -9,7 +9,6 @@ const config = {
   images: {
     unoptimized: true,
   },
-  distDir: ".vercel/output/static",
 };
 
 export default withMDX(config);

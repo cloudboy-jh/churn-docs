@@ -3,6 +3,92 @@ title: Changelog
 description: Release notes and version history for Churn
 ---
 
+## Version 2.1.8 - November 24, 2025
+
+### Terminal UI Refactoring 🖥️
+
+This release introduces a comprehensive redesign of the terminal user interface with fullscreen mode, virtualized rendering, and enhanced user experience.
+
+#### New Features
+
+##### 1. Fullscreen Mode
+
+- **Enhanced Display**: Fullscreen implementation using `fullscreen-ink` package
+- **Responsive Layouts**: All components adapt to terminal dimensions
+- **Immersive Experience**: Better utilization of terminal space
+- **Clean Rendering**: Optimized for various terminal sizes
+
+##### 2. Virtualized List Rendering
+
+- **Performance Boost**: New VirtualizedList component for efficient rendering
+- **Large Dataset Support**: Handles thousands of items smoothly
+- **Windowed Rendering**: Only visible items are rendered
+- **Smooth Scrolling**: Optimized scroll performance
+
+##### 3. Timestamped Report History
+
+- **Automatic Timestamps**: Reports saved as `report-{timestamp}.json`
+- **Smart Retention**: 30-day automatic cleanup policy
+- **Storage Management**: Maximum of 20 stored reports
+- **Easy Tracking**: Chronological report organization
+
+##### 4. Enhanced ReviewPanel
+
+- **Collapsible Interface**: Toggle panel with 'S' key
+- **Severity Breakdown**: Visual display of issue severity distribution
+- **Category Analytics**: Summary of suggestion categories
+- **Improved UX**: Better information density and navigation
+
+#### Design Improvements
+
+##### RunConsole Redesign
+
+- **Centered Layouts**: Modern, balanced UI design
+- **Rounded Borders**: Polished visual appearance
+- **Consistent Theming**: Unified color scheme throughout
+- **Removed Blue Colors**: Reverted to theme-based coloring
+- **Custom Theme Support**: Uses `ink-select-input` with primary color focus
+
+#### Technical Changes
+
+**New Files:**
+- `VirtualizedList.tsx` - Windowed rendering component
+- Analysis engine enhancements
+- Timestamp management utilities
+
+**Modified Files:**
+- `src/components/RunConsole.tsx` - Complete redesign with fullscreen support
+- `src/components/ReviewPanel.tsx` - Added collapsibility and analytics
+- `src/engine/reports.ts` - Timestamped report system
+- UI theme configuration - Removed blue color dependencies
+- `package.json` - Version bump to 2.1.8
+
+#### Files Affected
+
+Approximately 10 files modified or added:
+- 3 new components/utilities
+- 7 existing files updated for fullscreen architecture
+
+#### Performance Improvements
+
+- **Faster Rendering**: Virtualized lists reduce DOM operations
+- **Memory Efficient**: Only renders visible items
+- **Responsive UI**: Improved terminal responsiveness
+- **Better Scrolling**: Smooth performance with large datasets
+
+#### Developer Experience
+
+- Enhanced terminal UI with modern fullscreen capabilities
+- Better debugging with timestamped reports
+- Improved code organization with new component architecture
+- Cleaner theming system without hardcoded colors
+
+#### Breaking Changes
+
+None - fully backward compatible
+
+---
+
 ## Version 2.1.7 - November 23, 2025
 
 ### API Key Management Enhancement 🔑

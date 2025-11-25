@@ -1,96 +1,46 @@
 ---
 title: Introduction
-description: What is Churn and why should you use it?
+description: AI code review that removes the mental load of cleanup
 ---
 
-## What is Churn?
+## What Churn Does
 
-Churn is a local-first CLI tool that brings AI-powered code analysis directly to your terminal. It helps you identify bugs, refactor code, optimize performance, and improve code quality without sending your code to the cloud.
+Churn removes the mental load of cleanup and refactoring so you can move faster, stay consistent, and focus on building instead of maintenance.
 
-## Why Churn?
+It reviews your code, finds issues, and generates patches you can apply in seconds.
 
-### Philosophy and Benefits
+## Why Use It
 
-- **Local-First Architecture**: Your code never leaves your machine when using Ollama
-- **Privacy-Focused**: No telemetry, no cloud backend, no account required
-- **Zero Setup**: Works immediately in any Git repository
-- **Intelligent & Context-Aware**: Adaptive prompts based on language, framework, and project structure
-- **Cost-Effective**: Differential analysis + smart caching save up to 90% on API costs
-- **Fast**: Parallel processing + optimized diff analysis provides 10x speedup
-- **Accurate**: Framework detection delivers more relevant, targeted suggestions
-- **Deterministic**: Same input produces same output
+- **Takes the boring parts off your plate** — Refactoring, cleanup, and code consistency checks happen automatically
+- **Keeps your code consistent** — Even when jumping between projects or working late
+- **Catches what you miss** — Finds issues you'd normally overlook when tired or moving fast
+- **Turns cleanup into quick patches** — Big refactoring jobs become simple apply-and-done operations
+- **Works with any model** — Claude, GPT, Gemini, or run locally with Ollama
 
-### Key Features Overview
-
-1. **Multi-Provider AI Support**
-   - Anthropic Claude (Sonnet, Opus, Haiku)
-   - OpenAI GPT (GPT-5, GPT-5 Mini, Nano, Pro)
-   - Google Gemini (2.5 Pro, Flash, Flash-Lite)
-   - Ollama (local models for complete privacy)
-
-2. **Intelligent Analysis** ✨ New in v2.1
-   - **Adaptive Prompts**: Language-specific templates (TypeScript, Python, Rust, Go)
-   - **Context Awareness**: Automatic framework detection (React, Next.js, Django, FastAPI)
-   - **Differential Analysis**: 70-90% token reduction by analyzing only changes
-   - **Smart Mode Selection**: Automatic optimization based on file changes
-
-3. **Flexible Analysis Modes**
-   - Full repository analysis
-   - Staged files only with differential analysis (80-90% cost savings)
-   - Specific file patterns
-   - Smart fallback for optimal performance
-
-4. **Interactive Review**
-   - Navigate suggestions with keyboard shortcuts
-   - Accept or reject changes
-   - View detailed code diffs
-   - Filter by category and severity
-   - Real-time token usage and cost tracking
-
-5. **Smart Caching**
-   - Content-based hashing (SHA-256)
-   - Context-aware cache invalidation
-   - 70% cost savings on reruns
-   - 30-day cache duration
-   - Prompt version tracking
-
-6. **Multiple Export Formats**
-   - JSON for programmatic access
-   - Markdown reports for sharing
-   - Git patch files for applying changes
-
-## Who Should Use Churn?
-
-Churn is ideal for:
-
-- **Individual Developers**: Daily code quality checks before commits
-- **Development Teams**: Standardized code review workflows
-- **Open Source Maintainers**: Automated quality checks on contributions
-- **Security Teams**: Vulnerability and bug detection
-- **Tech Debt Managers**: Identifying refactoring opportunities
-
-## Quick Demo
+## Quick Start
 
 ```bash
-# Install Churn globally
+# Install
 bun install -g churn-cli
 
-# Navigate to your Git repository
+# Go to your project
 cd your-project
 
-# Select your AI provider
+# Pick an AI model
 churn model
 
-# Run analysis on staged files
+# Analyze staged files
 churn run --staged
 
-# Review suggestions interactively
+# Review and apply suggestions
 churn review
 
-# Export results
+# Export if needed
 churn export
 ```
 
 ## Next Steps
 
-Ready to get started? Follow our [installation guide](/docs/getting-started/installation) to install Churn, or jump to the [quick start tutorial](/docs/getting-started/quick-start) to run your first analysis.
+- [Installation](/docs/getting-started/installation) — Setup instructions
+- [Quick Start Tutorial](/docs/getting-started/quick-start) — Detailed walkthrough
+- [Analysis Modes](/docs/core-concepts/analysis-modes) — Full vs staged vs file-specific

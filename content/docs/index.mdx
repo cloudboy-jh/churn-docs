@@ -1,53 +1,35 @@
 ---
 title: Welcome to Churn
-description: Local-first AI code analysis tool for smarter refactoring
+description: AI code review that removes the mental load of cleanup
 ---
 
-Churn is a powerful CLI tool that brings AI-powered code analysis directly to your terminal. Built with a local-first philosophy, it helps you refactor smarter without sending your code to the cloud.
+Churn removes the mental load of cleanup and refactoring so you can move faster, stay consistent, and focus on building instead of maintenance.
 
-## Key Features
+## What You Can Do
 
-- **AI-Powered Analysis**: Leverage Claude, GPT, Gemini, or local Ollama models with adaptive prompts
-- **Smart Differential Analysis**: 70-90% token reduction in staged mode by analyzing only changes
-- **Context-Aware**: Automatic framework detection (React, Next.js, FastAPI, Django) for better suggestions
-- **Local-First**: Your code never leaves your machine when using Ollama
-- **Zero Setup**: Works immediately in any Git repository
-- **Smart Caching**: 70% cost savings on reruns with content-based hashing
-- **Multiple Modes**: Full, staged, or file-specific analysis
-- **Interactive Review**: Navigate and apply suggestions with ease
-- **Export Options**: JSON, Markdown, and Git patch formats
+- Run `churn run --staged` to analyze files before committing
+- Review suggestions interactively with `churn review`
+- Apply fixes as patches or export reports for your team
+- Use Claude, GPT, Gemini, or run locally with Ollama
 
 ## Quick Start
 
 ```bash
-# Install Churn
+# Install
 bun install -g churn-cli
 
-# Run your first analysis
-churn run
+# Analyze staged files
+churn run --staged
 
 # Review suggestions
 churn review
-
-# Export results
-churn export
 ```
 
-## Why Churn?
-
-- **Privacy**: Local-first architecture, no cloud dependencies
-- **Intelligent**: Context-aware analysis with adaptive prompts (30-50% token savings)
-- **Cost-Effective**: Differential analysis in staged mode saves 70-90% on API costs
-- **Fast**: Parallel processing with 10x speedup, optimized diff analysis
-- **Accurate**: Framework detection for better, more relevant suggestions
-- **Professional**: Quiet, focused, monospaced aesthetic
-- **Open Source**: MIT licensed, community-driven
-
-## Next Steps
+## Learn More
 
 <Cards>
   <Card title="Installation" href="/docs/getting-started/installation" />
   <Card title="Quick Start" href="/docs/getting-started/quick-start" />
-  <Card title="CLI Reference" href="/docs/cli-reference" />
+  <Card title="Analysis Modes" href="/docs/core-concepts/analysis-modes" />
   <Card title="Ollama Setup" href="/docs/ollama" />
 </Cards>

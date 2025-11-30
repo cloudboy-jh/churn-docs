@@ -3,6 +3,98 @@ title: Changelog
 description: Release notes and version history for Churn
 ---
 
+## Version 2.2.0 - November 28, 2025
+
+### Dynamic Model Updates
+
+This release introduces dynamic model configuration, allowing models to be updated without releasing new CLI versions.
+
+#### New Features
+
+##### Remote Model Manifest
+
+- **Dynamic Updates**: Models can now be updated without releasing new CLI versions
+- **Remote Fetching**: Model manifest fetched from GitHub with 24-hour caching
+- **User Overrides**: Custom model configuration via `~/.churn/models.json`
+- **Graceful Fallback**: Chain of user override → cached → remote → hardcoded defaults
+- **Fast Startup**: 5-second timeout on remote fetch to avoid blocking
+
+##### Updated Model Lists (November 2025)
+
+**Anthropic:**
+- claude-sonnet-4-5
+- claude-opus-4-5
+- claude-haiku-4-5
+- claude-sonnet-4
+
+**OpenAI:**
+- gpt-5.1
+- gpt-5 series
+
+**Google:**
+- gemini-3-pro
+- gemini series
+
+**Ollama:**
+- deepseek-r1
+- qwen2.5-coder
+- llama3.3
+- llama3.2
+- codellama
+- mistral
+- phi-3
+
+#### Custom Model Configuration
+
+Create `~/.churn/models.json` to override the default model list:
+
+```json
+{
+  "anthropic": ["claude-sonnet-4-5", "claude-opus-4-5"],
+  "openai": ["gpt-5.1", "gpt-5"],
+  "google": ["gemini-3-pro", "gemini-2.5-flash"],
+  "ollama": ["deepseek-r1", "qwen2.5-coder", "llama3.3"]
+}
+```
+
+---
+
+## Version 2.1.9 - November 25, 2025
+
+### Droid Agent Support
+
+This release adds Factory AI's Droid CLI as a handoff target for seamless agentic coding workflows.
+
+#### New Features
+
+- **Droid Adapter**: New `DroidAdapter` in the handoff engine
+- **UI Integration**: Droid option added to HandoffSettings UI
+- **Agent Order**: Updated priority order - claude, droid, gemini, codex, cursor
+
+#### UI Improvements
+
+##### ReviewPanel Detail View
+- Improved card layout with nested bordered code blocks
+- Before/After code sections have their own color-coded borders
+- Status moved inline with category/severity
+- Fixed content overflow issues
+
+##### RunConsole File Display
+- Files now grouped by folder in stacked display
+- Shows up to 3 folder groups at once
+- Up to 5 files per folder with "+N more" indicator
+- No cycling animation - updates naturally as analysis progresses
+
+##### Global Footer
+- Hidden during review phase (ReviewPanel has its own navigation)
+
+#### Bug Fixes
+
+- Fixed duplicate footer display during review phase
+- Fixed redundant keyboard handler for 'z' exit in ReviewPanel
+
+---
+
 ## Version 2.1.8 - November 24, 2025
 
 ### Terminal UI Refactoring 🖥️

@@ -16,14 +16,15 @@ After Churn completes its analysis and generates suggestions, the handoff system
 
 ## Supported Agents
 
-Churn supports handoff to the following AI coding agents:
+Churn supports handoff to the following AI coding agents (in order of priority):
 
 | Agent | Command | Description |
 |-------|---------|-------------|
-| **Claude Code** | `claude-code` | Anthropic's AI coding assistant with full codebase context |
-| **Cursor** | `cursor` | AI-powered code editor with chat interface |
+| **Claude Code** | `claude` | Anthropic's AI coding assistant with full codebase context |
+| **Droid** | `droid` | Factory AI's Droid CLI for agentic coding workflows |
 | **Gemini CLI** | `gemini` | Google's AI coding assistant |
 | **Codex** | `codex` | OpenAI's code generation system |
+| **Cursor** | `cursor` | AI-powered code editor with chat interface |
 
 ## Handoff Process
 
@@ -81,10 +82,10 @@ claude-code .churn/handoff/context.md
 
 Specify the target agent for handoff.
 
-**Values:** `claude-code`, `cursor`, `gemini`, `codex`
+**Values:** `claude`, `droid`, `gemini`, `codex`, `cursor`
 
 ```bash
-churn pass --to claude-code
+churn pass --to claude
 ```
 
 ### `--format <type>`
@@ -236,6 +237,21 @@ gemini --file .churn/handoff/suggestions.json
 **Launch command:**
 ```bash
 codex apply .churn/handoff/suggestions.json
+```
+
+### Droid
+
+**Strengths:**
+- Agentic coding workflows
+- Deep codebase understanding
+- Autonomous task execution
+- Factory AI ecosystem integration
+
+**Optimal format:** Comprehensive
+
+**Launch command:**
+```bash
+droid --context .churn/handoff/report.md
 ```
 
 ## Workflow Examples

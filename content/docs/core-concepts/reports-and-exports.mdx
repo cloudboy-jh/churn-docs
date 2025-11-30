@@ -140,16 +140,21 @@ Configure report settings in `.churn/config.json`:
 
 ## Historical Reports
 
-Churn keeps historical reports for tracking progress:
+Churn keeps timestamped historical reports for tracking progress:
 
 ```
 .churn/reports/
-├── churn-reports.json           # Latest
-├── churn-reports-2025-01-15.json
-├── churn-reports-2025-01-10.json
-└── archive/
-    └── older-reports...
+├── latest.json                        # Symlink to most recent
+├── report-2025-01-15T10-30-00.json   # Timestamped reports
+├── report-2025-01-10T14-22-00.json
+└── report-2025-01-05T09-15-00.json
 ```
+
+### Retention Policy
+
+- **30-day retention**: Reports older than 30 days are automatically cleaned up
+- **Maximum 20 reports**: Oldest reports are removed when limit is reached
+- **Latest symlink**: `latest.json` always points to the most recent report
 
 View report history:
 

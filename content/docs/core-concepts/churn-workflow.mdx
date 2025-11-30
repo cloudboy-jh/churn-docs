@@ -7,7 +7,7 @@ This diagram shows the complete workflow when using Churn for code analysis.
 
 <Mermaid>
 {`flowchart TD
-    Start([Start: churn run]) --> Init[Initialize Churn]
+    Start([Start: churn start]) --> Init[Initialize Churn]
     Init --> Detect[Detect Git Repository]
     Detect --> LoadConfig[Load Configuration]
     LoadConfig --> SelectMode{Analysis Mode}
@@ -32,7 +32,7 @@ This diagram shows the complete workflow when using Churn for code analysis.
     Categorize --> Prioritize[Assign Severity]
     Prioritize --> Store[Store Results]
     
-    Store --> Review([churn review])
+    Store --> Review([Review Findings])
     Review --> Navigate[Navigate Suggestions]
     Navigate --> Decision{Accept?}
     
@@ -44,15 +44,21 @@ This diagram shows the complete workflow when using Churn for code analysis.
     Skip --> Next
     
     Next -->|Yes| Navigate
-    Next -->|No| Export([churn export])
+    Next -->|No| Export([Export Results])
     
     Export --> GenJSON[Generate JSON Report]
     Export --> GenMD[Generate Markdown Report]
     Export --> GenPatch[Generate Git Patch]
     
-    GenJSON --> End([Complete])
-    GenMD --> End
-    GenPatch --> End
+    GenJSON --> Handoff
+    GenMD --> Handoff
+    GenPatch --> Handoff
+    
+    Handoff{Hand off to Agent?}
+    Handoff -->|Yes| SelectAgent[Select Agent]
+    Handoff -->|No| End([Complete])
+    SelectAgent --> LaunchAgent[Launch Claude/Droid/Gemini/Codex/Cursor]
+    LaunchAgent --> End
     
     style Start fill:#ff5656,color:#fff
     style Review fill:#ff5656,color:#fff
@@ -60,6 +66,7 @@ This diagram shows the complete workflow when using Churn for code analysis.
     style End fill:#ff5656,color:#fff
     style Cache fill:#ffd700,color:#000
     style Decision fill:#ffd700,color:#000
+    style Handoff fill:#ffd700,color:#000
 `}
 </Mermaid>
 
@@ -115,27 +122,33 @@ The `churn review` command lets you:
 
 ### 7. Export & Reporting
 
-Finally, `churn export` generates:
+Finally, export generates:
 - **JSON**: For programmatic access and CI/CD
 - **Markdown**: For human-readable reports
 - **Git Patch**: For applying changes with Git
+
+### 8. Agent Handoff
+
+After exporting, you can hand off findings to an AI coding agent:
+- Choose from Claude, Droid, Gemini, Codex, or Cursor
+- Select context format (minimal or comprehensive)
+- Agent launches with full analysis context
+
+See [Agent Handoff](/docs/core-concepts/agent-handoff) for details.
 
 ## Command Sequence
 
 Typical usage pattern:
 
 ```bash
-# 1. Select AI model (one-time setup)
-churn model
+# 1. Start Churn (interactive menu)
+churn start
 
-# 2. Run analysis
-churn run --staged
+# 2. Review findings interactively
+# (accessible from start menu after analysis)
 
-# 3. Review suggestions interactively
-churn review
-
-# 4. Export results
-churn export
+# 3. Export and optionally hand off to agent
+# (Y/N/C prompt after export)
 ```
 
 ## Optimization Tips

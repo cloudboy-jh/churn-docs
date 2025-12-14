@@ -3,6 +3,58 @@ title: Changelog
 description: Release notes and version history for Churn
 ---
 
+## Version 2.2.4 - December 13, 2025
+
+### Version Updates & Stability
+
+This release series (2.2.2 - 2.2.4) focuses on version management improvements and stability fixes following the major review flow refactor in v2.2.1.
+
+#### Key Changes
+
+##### Dynamic Version Reading (v2.2.4)
+
+- **Runtime Version**: Version now read dynamically from `package.json` at runtime
+- **No Mismatches**: Eliminates version mismatch issues between package.json and CLI output
+- **Easier Releases**: No more forgetting to update hardcoded version strings during releases
+- **Workflow Reliability**: Improves release workflow reliability
+
+##### Version Display Fixes (v2.2.3)
+
+- Fixed hardcoded version references that were out of sync
+- Ensures consistent version display across all CLI output
+
+##### npm Publishing (v2.2.2)
+
+- Version bump for npm publishing
+- No functional changes
+
+#### Technical Details
+
+**Before (Hardcoded):**
+```typescript
+// Had to update manually on each release
+const VERSION = "2.2.3";
+```
+
+**After (Dynamic):**
+```typescript
+// Reads from package.json automatically
+import pkg from "../package.json";
+const VERSION = pkg.version;
+```
+
+#### Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 2.2.4 | Dec 13, 2025 | Dynamic version from package.json |
+| 2.2.3 | Dec 12, 2025 | Version display fixes |
+| 2.2.2 | Dec 11, 2025 | npm version bump |
+| 2.2.1 | Dec 9, 2025 | Review flow refactor |
+| 2.2.0 | Nov 28, 2025 | Dynamic model updates |
+
+---
+
 ## Version 2.2.0 - November 28, 2025
 
 ### Dynamic Model Updates
@@ -379,40 +431,34 @@ See the [GitHub releases](https://github.com/cloudboy-jh/churn/releases) for ver
 
 ## Upgrade Guide
 
-### From 2.1.6 to 2.1.7
+### From 2.2.x to 2.2.4
+
+No breaking changes. Standard upgrade:
+
+```bash
+# Using npm
+npm install -g churn-cli@latest
+
+# Using bun
+bun install -g churn-cli@latest
+```
+
+### From 2.1.x to 2.2.x
 
 No breaking changes. Simply update:
 
 ```bash
 # Using npm
-npm update -g churn-cli
+npm install -g churn-cli@latest
 
 # Using bun
-bun update -g churn-cli
-
-# Using yarn
-yarn global upgrade churn-cli
-
-# Using pnpm
-pnpm update -g churn-cli
+bun install -g churn-cli@latest
 ```
 
-API key age tracking is automatically enabled. Existing keys will show "unknown" age until updated.
-
-### From 2.1.1 to 2.1.6
-
-No breaking changes. Simply update using the commands above.
-
-New features:
-- Agent handoff system is available via `churn pass` command with new flags
-- Configure handoff preferences via the new HandoffSettings UI
-- Legacy configurations work without modification
-
-### From 2.1.0 to 2.1.1
-
-No breaking changes. Simply update using the commands above.
-
-The differential analysis feature is automatically enabled in staged mode.
+New features in 2.2.x:
+- Dynamic model configuration (v2.2.0)
+- Review flow improvements (v2.2.1)
+- Dynamic version reading from package.json (v2.2.4)
 
 ### From 2.0.x to 2.1.x
 
@@ -420,13 +466,14 @@ No configuration changes required. New features are automatically enabled:
 
 - Adaptive prompts will be used based on detected project context
 - Differential analysis activates in staged mode
+- Agent handoff system via `churn pass` command
 - Existing cache remains valid with graceful degradation
 
 ---
 
 ## Coming Soon
 
-### Planned for v2.2.0
+### Planned for v2.3.0
 
 - Enhanced language support (Java, C++, C#)
 - Custom analysis packs
